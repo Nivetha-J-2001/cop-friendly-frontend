@@ -1,0 +1,46 @@
+.body
+{
+    margin-top: 50px;
+    justify-content: center;
+    
+}
+.listtable
+{
+   text-align: center;
+    table-layout: auto;
+    text-transform: capitalize;
+    margin: 50px 20px;
+}
+thead
+{
+    background-color: rgb(12, 87, 35);
+    color: white;
+    position: sticky;
+}
+.search
+{
+    margin: 30px 0px 30px 30px;
+}
+.inputvalue{
+    width: 95%;
+}
+span
+{
+    margin: 0px 5%;
+}
+.action
+{
+    width: 150px;
+}
+.check
+{
+    float: left;
+    width: 50%;
+    color: green;
+}
+.delete
+{
+    float: right;
+    width: 50%;
+    color: red;
+}
