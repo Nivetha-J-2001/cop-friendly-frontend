@@ -3,6 +3,7 @@ import Service from '../../Service/Service';
 import "../../CSS/view.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
+import Header from '../Header/Header';
 
 export default class MedicalTeam  extends Component{
     constructor(props) {
@@ -58,7 +59,7 @@ export default class MedicalTeam  extends Component{
         return (
             <div>
                 <div className='head'>
-                    <h1>Medical Team</h1>
+                    <Header />
                 </div>
                 <div className='body'>
                     <h2 className="text-center">Medical Emergency</h2>

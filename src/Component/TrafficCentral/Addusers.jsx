@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-
+import Header from "../Header/Header";
 import '../../CSS/trafficcentral.css';
 
 export default function Addusers()
@@ -20,7 +20,7 @@ export default function Addusers()
     }
     return (
         <div className="home">
-            <h1>Cop eSeva portal</h1>
+            <Header />
             <div className='flexbox'>
                     <div className="card">
                         <div className="card-body">

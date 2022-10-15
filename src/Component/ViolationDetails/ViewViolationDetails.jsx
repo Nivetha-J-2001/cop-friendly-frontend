@@ -1,6 +1,7 @@
 import React, { Component} from 'react';
 import Service from '../../Service/Service';
 import "../../CSS/view.css";
+import Header from '../Header/Header';
 
 export default class viewViolationdetails extends Component{
     constructor(props) {
@@ -34,7 +35,7 @@ export default class viewViolationdetails extends Component{
         return (
             <div>
                 <div className='head'>
-                    <h1>Violation Details</h1>
+                    <Header />
                 </div>
                 <div className='body'>
                     <h2 className="text-center">Violation Details</h2>

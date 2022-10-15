@@ -2,9 +2,11 @@ import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
 import Service from "../../Service/Service";
 import '../../CSS/signin.css';
+import { toast } from "react-toastify";
 
 export default function Signin()
 {
+    localStorage.clear();
     const history = useHistory();
     const [email,setEmail]=useState('');
     const [password,setPassword]=useState('');
@@ -12,28 +14,32 @@ export default function Signin()
     {
         e.preventDefault();
         let login={email:email,password:password}
-        Service.signin(login).then((response) => {
-            // console.log(response);
-            alert("Signin Successfully");
-            // console.log(response.data);
-            if(response.data === 1)
-            {
-                history.push('/trafficcentral');
+        Service.signin(login).then((res) => {
+            // console.log(JSON.stringify(res));
+            localStorage.setItem('token', res.data.token);
+            localStorage.setItem('useremail',res.data.email);
+            localStorage.setItem('role',res.data.roles);
+            localStorage.setItem('userid',res.data.id);
+            // history.push("/medicalteam");
+            if(localStorage.getItem('role') === '[TRAFFIC COP]'){
+                history.push("/trafficcop");
             }
-            else if(response.data === 2)
-            {
-                history.push('/trafficcop');
-            }
-            else{
-                history.push('/medicalteam');
+            else if(localStorage.getItem('role') === '[MEDICAL TEAM]'){
+                history.push("/medicalteam");
+            }else if(localStorage.getItem('role') === '[TRAFFIC CENTRAL]'){
+                history.push("/trafficcentral");
             }
           }, (error) => {
             console.log(error);
-            alert("Invalid email or password");
+            toast.error("Invalid email or password");
           });
            
     };
     
+    const handleForgetClick = (e) =>{
+        history.push("/forgetpassword");
+    }
+
     const validateemail = (email) => {
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
         
@@ -79,10 +85,12 @@ export default function Signin()
                     </div>
                     <p>{validatepassword(password)}</p>
 
-                    <div className="text-center">
+                    <div className="text-center" >
                         <button type="submit" className="btn btn-primary" id="submitButton"
                         disabled={ !(email && password)? true : false}
                         onClick={handleSubmitClick}>Submit</button>
+                        <button type="submit" className="btn btn-danger" id="forgetButton"
+                        onClick={handleForgetClick}>Forget Password</button>
                     </div>
                 </div>
             </form>

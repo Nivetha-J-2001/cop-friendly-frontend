@@ -3,6 +3,8 @@ import Service from '../../Service/Service';
 import "../../CSS/view.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
+import Header from '../Header/Header';
+
 export default class UpdateAdditionalCop  extends Component{
     constructor(props) {
         super(props)
@@ -58,7 +60,7 @@ export default class UpdateAdditionalCop  extends Component{
         return (
             <div>
                 <div className='head'>
-                    <h1>Additional Cop</h1>
+                    <Header />
                 </div>
                 <div className='body'>
                     <h2 className="text-center">Additional Cop</h2>
@@ -67,7 +69,7 @@ export default class UpdateAdditionalCop  extends Component{
                         placeholder='Enter the status or priority to filter...'
                         onChange={this.handleSearch} />
                     </div>
-                    <div className = "listtable">
+                    <div className = "listtable table-responsive">
                         <table className = "table table-bordered">
                             <thead>
                                 <tr>

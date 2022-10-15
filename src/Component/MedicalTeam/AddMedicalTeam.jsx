@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
 import Service from "../../Service/Service";
 import '../../CSS/signin.css';
+import Header from "../Header/Header";
+import { toast } from "react-toastify";
 
 function AddMedicalTeam() {
     const history = useHistory();
@@ -16,12 +18,12 @@ function AddMedicalTeam() {
         e.preventDefault();
         let medical={email:email,username:username,password:password,mobileNo:mobileNumber};
         Service.createMedicalTeam(medical).then((response) => {
-            console.log(response);
-            alert("Signup Successfully");
+            // console.log(response);
+            toast.success("Signup Successfully");
             history.push('/trafficcentral');
           }, (error) => {
             console.log(error);
-            alert("User already present");
+            toast.error("User already present");
           });
         
     };
@@ -70,9 +72,11 @@ function AddMedicalTeam() {
     };
         
     return (
+        <>
+        <Header />
         <div className="signupform">
             <form>
-                <h3 className="text-white">Register</h3>
+                <h3 className="text-white">Add Medical Team</h3>
                 <div className="form-item">
                     
                     <div className="form-group">
@@ -140,6 +144,7 @@ function AddMedicalTeam() {
                 </div>
             </form>
         </div>
+        </>
     );
 }
 export default AddMedicalTeam;

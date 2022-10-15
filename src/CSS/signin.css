@@ -37,7 +37,7 @@ h3
     background-color: rgb(230, 172, 172);
     padding: 10px;
 }
-sele
+select
 {
     width: 100%;
     padding: 8px;
@@ -56,7 +56,7 @@ p
     max-width: 400px;
     font-weight:bold ;
 }
-#resetButton
+#forgetButton 
 {
     margin-left: 10%;
 }

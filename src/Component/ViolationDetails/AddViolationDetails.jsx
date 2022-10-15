@@ -2,8 +2,10 @@ import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
 import Service from "../../Service/Service";
 import '../../CSS/addviolation.css';
+import Header from "../Header/Header";
+import { toast } from "react-toastify";
 
-export default function AddAdditioncalCop() {
+export default function Addviolationdetails() {
     const history = useHistory();
     const [ViolatorName,setViolatorName]=useState('');
     const [LicenceNo,setLicenceNo]=useState('');
@@ -17,21 +19,27 @@ export default function AddAdditioncalCop() {
     const [fineAmount,setFineAmount]=useState('');
     const [paymentType,setPaymentType]=useState('');
     let PaymentStatus = '';
-    const level={PaymentStatus};
-
+    const [visible,setVisible]=useState(false);
     
     const handleSubmitClick = (e) => 
     {
         e.preventDefault();
+        if(!visible)
+        {
+            setFineAmount(0);
+            setPaymentType(null);
+            PaymentStatus=null;
+        }
         let details={name:ViolatorName,licenceNo:LicenceNo,violationType:violationType,vehicleType:VehicleType,
             location:Location,mailId:MailId,mobileNumber:mobileNumber,date:date,time:time,
-            fineAmount:fineAmount,paymentType:paymentType,paymentStatus:level};
-        console.log(details);
-        Service.Addviolationdetails(details).then((response) => {
+            fineAmount:fineAmount,paymentType:paymentType,paymentStatus:PaymentStatus,user:{id:localStorage.getItem('userid')}};
+        // console.log(details);
+       Service.Addviolationdetails(details).then((response) => {
             // console.log(response);
-            alert("Added Successfully");
+            toast.success("Added Successfully");
             history.push('/trafficcop');
           }, (error) => {
+            toast.error("Unsuccessful");
             console.log(error);
           });
         
@@ -39,6 +47,18 @@ export default function AddAdditioncalCop() {
     
     const handleresetClick = (e) => {
         e.preventDefault();
+        setViolatorName('');
+        setLicenceNo('');
+        setViolationType('');
+        setVehicleType('');
+        setLocation('');
+        setMailId('');
+        setMobileName('');
+        setDate('');
+        setTime('');
+        setFineAmount('');
+        setPaymentType('');
+        PaymentStatus='';
         
     
     }
@@ -81,11 +101,11 @@ export default function AddAdditioncalCop() {
         
     return (
         <div className="head">
-            <h1>Violation Detail</h1>
+            <Header />
 
         <div className="signupform" >
             <form className="register">
-                <h3 className="text-white">Register</h3>
+                <h3 className="text-white">Violation Detail</h3>
                 <div className="form-item">
                     
                     <div className="form-group">
@@ -125,7 +145,7 @@ export default function AddAdditioncalCop() {
                     <div className="form-group">
                         <input type="text"
                             className="form-control"
-                            placeholder="Enter Vehicle Type"
+                            placeholder="Enter Vehicle Number"
                             id="vehicletype"
                             value={VehicleType}
                             onChange={(e)=> {setVehicleType(e.target.value); }}
@@ -190,42 +210,53 @@ export default function AddAdditioncalCop() {
                     </div>
                     <p>{validate(time)}</p>
                     
-                    <div className="form-group">
-                        <input type="number"
-                            className="form-control"
-                            placeholder="Enter fine amount"
-                            id="fineamount"
-                            value={fineAmount}
-                            onChange={(e)=> {setFineAmount(e.target.value); }}
-                            required />
+                    <div className="form-group row" id="radioselect">
+                        <label className="col-sm-3 col-form-label" id="fine">Fine :</label>
+                        <div className="col-sm-2 mt-2">
+                        Yes<input type="radio" className="mx-2" name="isyes" value="1" onClick={ ()=>setVisible(true)} />
+                        </div>
+                        <div className="col-sm-2 mt-2"> 
+                        No<input type="radio" className="mx-2 mt-1" name="isyes" value="0" onClick={ ()=>setVisible(false)} />
+                        </div>
                     </div>
-                    <p>{validate(fineAmount)}</p>
-                    
-                    <div className="form-group">
-                        <input type="text"
-                            className="form-control"
-                            placeholder="Enter Payment Type"
-                            id="paymentType"
-                            value={paymentType}
-                            onChange={(e)=>{setPaymentType(e.target.value); }}
-                            required />
-                    </div>
-                    <p>{validate(paymentType)}</p>
+                    { visible &&
+                        <>
+                            <div className="form-group">
+                                <input type="number"
+                                    className="form-control"
+                                    placeholder="Enter fine amount"
+                                    id="fineamount"
+                                    value={fineAmount}
+                                    onChange={(e)=> {setFineAmount(e.target.value); }}
+                                    required />
+                            </div>
+                            <p>{validate(fineAmount)}</p>
+                            
+                            <div className="form-group">
+                                <input type="text"
+                                    className="form-control"
+                                    placeholder="Enter Payment Type"
+                                    id="paymentType"
+                                    value={paymentType}
+                                    onChange={(e)=>{setPaymentType(e.target.value); }}
+                                    required />
+                            </div>
+                            <p>{validate(paymentType)}</p>
 
-                    
-                    <div className="form-group">
-                        <select  onChange={(e)=>{ PaymentStatus = e.target.value; }}>           
-                            <option >select Payment Status</option>
-                            <option value="Success">Success</option>
-                            <option value="Failed">Failed</option>
-                        </select>
-                    </div>                    
-                    
+                            
+                            <div className="form-group">
+                                <select  onChange={(e)=>{ PaymentStatus = e.target.value; console.log(PaymentStatus); }}>           
+                                    <option >select Payment Status</option>
+                                    <option value="Success">Success</option>
+                                    <option value="Failed">Failed</option>
+                                </select>
+                            </div> 
+                        </>                   
+                    }
                     <div className="text-center">
                         <button type="submit" className="btn btn-primary" id="submitButton"
                         disabled={ !(ViolatorName && violationType && LicenceNo && VehicleType && 
-                            Location && MailId && mobileNumber && date && time && fineAmount
-                            && paymentType )? true : false}
+                            Location && MailId && mobileNumber && date && time)? true : false}
                         onClick={handleSubmitClick}>Submit</button>
 
                         <button type="reset" className="btn btn-danger" id="resetButton"

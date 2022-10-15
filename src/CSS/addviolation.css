@@ -72,3 +72,16 @@ p
 {
     margin-left: 10%;
 }
+#radioselect
+{
+    padding: 10px 0px;
+}
+#fine
+{
+    font-weight: bold;
+    padding-right: 10% ;
+}
+#yes,#no
+{
+    padding-right: 10%;
+}

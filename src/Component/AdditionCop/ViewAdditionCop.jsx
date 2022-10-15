@@ -1,6 +1,8 @@
 import React, { Component} from 'react';
 import Service from '../../Service/Service';
 import "../../CSS/view.css";
+import Header from '../Header/Header';
+
 export default class ViewAdditionalCop  extends Component{
     constructor(props) {
         super(props)
@@ -34,7 +36,7 @@ export default class ViewAdditionalCop  extends Component{
         return (
             <div>
                 <div className='head'>
-                    <h1>Additional Cop</h1>
+                    <Header />
                 </div>
                 <div className='body'>
                     <h2 className="text-center">Additional Cop</h2>
@@ -43,7 +45,7 @@ export default class ViewAdditionalCop  extends Component{
                         placeholder='Enter the status or priority to filter...'
                         onChange={this.handleSearch} />
                     </div>
-                    <div className = "listtable">
+                    <div className = "listtable table-responsive">
                         <table className = "table table-bordered">
                             <thead>
                                 <tr>

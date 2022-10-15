@@ -4,6 +4,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 
 import '../../CSS/trafficcentral.css';
+import Header from "../Header/Header";
 
 export default function TrafficCentral()
 {
@@ -26,7 +27,7 @@ export default function TrafficCentral()
     }
     return (
         <div className="home">
-            <h1>Cop eSeva portal</h1>
+            <Header />
             <div className='flexbox'>
             <div className="card">
                         <div className="card-body">

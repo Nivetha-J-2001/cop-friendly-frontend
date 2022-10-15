@@ -1,7 +1,9 @@
 import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
 import Service from "../../Service/Service";
+import Header from "../Header/Header"
 import '../../CSS/signin.css';
+import { toast } from "react-toastify";
 
 export default function AddAdditioncalCop() {
     const history = useHistory();
@@ -15,13 +17,15 @@ export default function AddAdditioncalCop() {
     const handleSubmitClick = (e) => 
     {
         e.preventDefault();
-        let cop={name:name,phoneNumber:mobileNumber,noOfRequired:noOfRequired,location:location,priority:priority};
+        let cop={name:name,phoneNumber:mobileNumber,noOfRequired:noOfRequired,location:location,priority:priority
+            ,user:{id:localStorage.getItem('userid')}};
         Service.AddAdditionalcop(cop).then((response) => {
             // console.log(response);
-            alert("Added Successfully");
+            toast.success("Added Successfully");
             history.push('/trafficcop');
           }, (error) => {
-            console.log(error);
+            toast.error("Unsuccessful")
+            // console.log(error);
           });
         
     };
@@ -65,9 +69,11 @@ export default function AddAdditioncalCop() {
     
         
     return (
+        <>
+        <Header/>
         <div className="signupform">
             <form>
-                <h3 className="text-white">Register</h3>
+                <h3 className="text-white">Add Additional Cop</h3>
                 <div className="form-item">
                     
                     <div className="form-group">
@@ -116,7 +122,7 @@ export default function AddAdditioncalCop() {
                     <p>{validatelocation(location)}</p>
 
                     <div className="form-group">
-                    <select  onChange={(e)=>{ priority = e.target.value ;}}>           
+                    <select  onChange={(e)=>{ priority = e.target.value}}>           
                         <option >select Priority</option>
                         <option value="Very Low">Very Low</option>
                         <option value="Low">Low</option>
@@ -138,5 +144,6 @@ export default function AddAdditioncalCop() {
                 </div>
             </form>
         </div>
+        </>
     );
 }

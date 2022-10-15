@@ -2,21 +2,20 @@ import axios from "axios";
 
 const REST_API_URL = "http://localhost:8080";
 
-// axios.interceptors.request.use(function (config ) {
-//   const token = localStorage.getItem('token');
-//   if (token) {
-//     config.headers.Authorization = `Bearer ${token}`;
-//   }
-//   return config;
-// }, function (error) {
-//   return Promise.reject(error);
-// });
+  axios.interceptors.request.use(function (config ) {
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  }, function (error) {
+    return Promise.reject(error);
+  });
 
 class Service {
 
   //signup traffic cop
   createTrafficCop(trafficcop) {
-    // console.log(axios.post(REST_API_URL +"/trafficcop/signup" , trafficcop))
     return axios.post(REST_API_URL +"/trafficcop/signup" , trafficcop);
   }
 
@@ -36,19 +35,10 @@ class Service {
   }
 
   //check email for traffic cob
-  checkcopemail(email) {
+  checkemail(email) {
     return axios.get(REST_API_URL + "/trafficcop/email/" + email);
   }
 
-  //check email for traffic central team
-  checkcentralemail(email) {
-    return axios.get(REST_API_URL + "/trafficcentral/email/" + email);
-  }
-
-  //check email for medical team
-  checkmedicalemail(email) {
-    return axios.get(REST_API_URL + "/medical/email/" + email);
-  }
   //get user name
 //checkUserName(userName) {
 //  return axios.get(REST_API_URL + "/role/current-user" + userName);
@@ -65,8 +55,8 @@ class Service {
   }
 
   //resset password
-  updatePassword(user,password) {
-    return axios.post(REST_API_URL+"/resetpassword" , user , password);
+  updatePassword(email,password) {
+    return axios.post(REST_API_URL+"/resetpassword/"+ email+"/"+ password);
   }
   //violation details CURD Operation
   Addviolationdetails(violationdetails) {

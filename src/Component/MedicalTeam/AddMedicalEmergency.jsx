@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
 import Service from "../../Service/Service";
 import '../../CSS/signin.css';
+import Header from "../Header/Header";
+import { toast } from "react-toastify";
 
 export default function AddMedicalEmergency() {
     const history = useHistory();
@@ -15,12 +17,14 @@ export default function AddMedicalEmergency() {
     const handleSubmitClick = (e) => 
     {
         e.preventDefault();
-        let medical={name:name,phoneNumber:mobileNumber,noOfAffected:noOfRequired,location:location,priority:priority};
+        let medical={name:name,phoneNumber:mobileNumber,noOfAffected:noOfRequired,location:location,priority:priority
+            ,user:{id:localStorage.getItem('userid')}};
         Service.AddMedicalemergency(medical).then((response) => {
             // console.log(response);
-            alert("Added Successfully");
+            toast.success("Added Successfully");
             history.push('/trafficcop');
           }, (error) => {
+            toast.error("Unsuccessful");
             console.log(error);
           });
         
@@ -65,9 +69,11 @@ export default function AddMedicalEmergency() {
     
         
     return (
+        <>
+        <Header/>
         <div className="signupform">
             <form>
-                <h3 className="text-white">Register</h3>
+                <h3 className="text-white">Add Medical Emergency</h3>
                 <div className="form-item">
                     
                     <div className="form-group">
@@ -138,5 +144,6 @@ export default function AddMedicalEmergency() {
                 </div>
             </form>
         </div>
+        </>
     );
 }

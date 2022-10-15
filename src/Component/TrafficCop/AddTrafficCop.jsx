@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
 import Service from "../../Service/Service";
 import '../../CSS/signin.css';
+import Header from "../Header/Header";
+import { toast } from "react-toastify";
 
 function AddTrafficCop() {
     const history = useHistory();
@@ -16,11 +18,11 @@ function AddTrafficCop() {
         let trafficcop={email:email,username:username,password:password,mobileNo:mobileNumber};
         Service.createTrafficCop(trafficcop).then((response) => {
             console.log(response);
-            alert("Signup Successfully");
+            toast.success("Signup Successfully");
             history.push('/trafficcentral');
           }, (error) => {
             console.log(error);
-            alert("User already present");
+            toast.error("User already present");
           });
         
     };
@@ -69,10 +71,11 @@ function AddTrafficCop() {
     };
         
     return (
+        <>
+        <Header />
         <div className="signupform">
-            {/* { isSubmit } */}
             <form>
-                <h3 className="text-white">Register</h3>
+                <h3 className="text-white">Add Traffic Cop</h3>
                 <div className="form-item">
                     
                     <div className="form-group">
@@ -140,6 +143,7 @@ function AddTrafficCop() {
                 </div>
             </form>
         </div>
+        </>
     );
 }
 export default AddTrafficCop;

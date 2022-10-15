@@ -2,6 +2,9 @@ import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
 import Service from "../../Service/Service";
 import '../../CSS/signin.css';
+import Header from "../Header/Header";
+import { toast } from "react-toastify";
+
 function AddTrafficCentral() {
     const history = useHistory();
     const [email,setEmail]=useState('');
@@ -16,11 +19,11 @@ function AddTrafficCentral() {
         let trafficcentral={email:email,username:username,password:password,mobileNo:mobileNumber};
         Service.createCentralTeam(trafficcentral).then((response) => {
             console.log(response);
-            alert("Signup Successfully");
+            toast.success("Signup Successfully");
             history.push('/trafficcentral');
           }, (error) => {
             console.log(error);
-            alert("User already present");
+            toast.error("User already present");
           });
         
     };
@@ -69,9 +72,11 @@ function AddTrafficCentral() {
     };
         
     return (
+        <>
+        <Header />
         <div className="signupform">
             <form>
-                <h3 className="text-white">Register</h3>
+                <h3 className="text-white">Add Traffic Central</h3>
                 <div className="form-item">
                     
                     <div className="form-group">
@@ -139,6 +144,7 @@ function AddTrafficCentral() {
                 </div>
             </form>
         </div>
+        </>
     );
 }
 export default AddTrafficCentral;
