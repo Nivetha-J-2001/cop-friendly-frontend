@@ -4,6 +4,7 @@ import Service from "../../Service/Service";
 import '../../CSS/signin.css';
 import Header from "../Header/Header";
 import { toast } from "react-toastify";
+import ErrorPage from "../ErrorPage/ErrorPage";
 
 function AddTrafficCop() {
     const history = useHistory();
@@ -20,9 +21,20 @@ function AddTrafficCop() {
             console.log(response);
             toast.success("Signup Successfully");
             history.push('/trafficcentral');
-          }, (error) => {
-            console.log(error);
-            toast.error("User already present");
+          }, (Error) => {
+            let message;    
+                if (Error['response'].status === 409) {
+                    message = 'Details Already Present !'
+                } else if(Error['response'].status === 401 )
+                {
+                    message = "Invalid Credentials"
+                }else if(Error['response'].status === 404 )
+                {
+                    <ErrorPage/>
+                } else {
+                    message = 'OPPS! Network error';
+                }    
+                toast.error(message);
           });
         
     };

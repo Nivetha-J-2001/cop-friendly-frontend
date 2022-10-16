@@ -4,6 +4,7 @@ import Service from "../../Service/Service";
 import Header from "../Header/Header"
 import '../../CSS/signin.css';
 import { toast } from "react-toastify";
+import ErrorPage from "../ErrorPage/ErrorPage";
 
 export default function AddAdditioncalCop() {
     const history = useHistory();
@@ -23,14 +24,20 @@ export default function AddAdditioncalCop() {
             // console.log(response);
             toast.success("Added Successfully");
             history.push('/trafficcop');
-          }, (error) => {
+          }, (Error) => {
             let message;    
-            if (error['response'].status === 409) {
-                message = 'Details Already Present !'
-            } else {
-                message = 'OPPS! Network error';
-            }    
-            toast.error(message);
+                if (Error['response'].status === 409) {
+                    message = 'Details Already Present !'
+                } else if(Error['response'].status === 401 )
+                {
+                    message = "Invalid Credentials"
+                }else if(Error['response'].status === 404 )
+                {
+                    <ErrorPage/>
+                } else {
+                    message = 'OPPS! Network error';
+                }    
+                toast.error(message);  
             // console.log(error);
           });
         

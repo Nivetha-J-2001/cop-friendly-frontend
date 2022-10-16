@@ -4,6 +4,8 @@ import "../../CSS/view.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import Header from '../Header/Header';
+import ErrorPage from "../ErrorPage/ErrorPage";
+import { toast } from 'react-toastify';
 
 export default class MedicalTeam  extends Component{
     constructor(props) {
@@ -20,7 +22,17 @@ export default class MedicalTeam  extends Component{
             this.setState( { MedicalEmergency : res.data} );
                 // console.log(MedicalEmergency);
             },(Error)=>{
-                console.error(Error);
+                let message;    
+                if(Error['response'].status === 401 )
+                {
+                    message = "Invalid Credentials"
+                }else if(Error['response'].status === 404 )
+                {
+                    <ErrorPage/>
+                } else {
+                    message = 'OPPS! Network error';
+                }    
+                toast.error(message);
             });
     }
 

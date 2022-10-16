@@ -2,6 +2,8 @@ import React, { Component} from 'react';
 import Service from '../../Service/Service';
 import "../../CSS/view.css";
 import Header from '../Header/Header';
+import ErrorPage from "../ErrorPage/ErrorPage";
+import { toast } from 'react-toastify';
 
 export default class ViewAdditionalCop  extends Component{
     constructor(props) {
@@ -18,7 +20,17 @@ export default class ViewAdditionalCop  extends Component{
             this.setState( { AdditionalCop : res.data} );
                 // console.log(AdditionalCop);
             },(Error)=>{
-                console.error(Error);
+                let message;    
+                if(Error['response'].status === 401 )
+                {
+                    message = "Invalid Credentials"
+                }else if(Error['response'].status === 404 )
+                {
+                    <ErrorPage/>
+                } else {
+                    message = 'OPPS! Network error';
+                }    
+                toast.error(message);
             });
     }
 
