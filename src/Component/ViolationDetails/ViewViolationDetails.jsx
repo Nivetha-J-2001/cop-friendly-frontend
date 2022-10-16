@@ -2,6 +2,8 @@ import React, { Component} from 'react';
 import Service from '../../Service/Service';
 import "../../CSS/view.css";
 import Header from '../Header/Header';
+import { toast } from 'react-toastify';
+import ErrorPage from '../ErrorPage/ErrorPage';
 
 export default class viewViolationdetails extends Component{
     constructor(props) {
