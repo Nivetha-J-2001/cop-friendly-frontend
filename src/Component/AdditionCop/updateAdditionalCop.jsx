@@ -4,6 +4,8 @@ import "../../CSS/view.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import Header from '../Header/Header';
+import { toast } from 'react-toastify';
+import ErrorPage from '../ErrorPage/ErrorPage';
 
 export default class UpdateAdditionalCop  extends Component{
     constructor(props) {
@@ -21,7 +23,19 @@ export default class UpdateAdditionalCop  extends Component{
             this.setState( { AdditionalCop : res.data} );
                 // console.log(AdditionalCop);
             },(Error)=>{
-                console.error(Error);
+                let message;    
+                if (Error['response'].status === 409) {
+                    message = 'Details Already Present !'
+                } else if(Error['response'].status === 401 )
+                {
+                    message = "Invalid Credentials"
+                }else if(Error['response'].status === 404 )
+                {
+                    <ErrorPage/>
+                } else {
+                    message = 'OPPS! Network error';
+                }    
+                toast.error(message);
             });
     }
 

@@ -21,7 +21,6 @@ import updateAdditionalCop from "./Component/AdditionCop/updateAdditionalCop";
 import AdditionalCop from "./Component/AdditionCop/AdditionalCop";
 import ForgetPassword from "./Component/Signin/ForgetPassword";
 
-
 export default class Routing  extends Component {
   constructor(props) {
     super(props)

@@ -24,7 +24,13 @@ export default function AddAdditioncalCop() {
             toast.success("Added Successfully");
             history.push('/trafficcop');
           }, (error) => {
-            toast.error("Unsuccessful")
+            let message;    
+            if (error['response'].status === 409) {
+                message = 'Details Already Present !'
+            } else {
+                message = 'OPPS! Network error';
+            }    
+            toast.error(message);
             // console.log(error);
           });
         
