@@ -2,13 +2,6 @@ body
 {
     background-color: rgb(243, 243, 155);
 }
-h1
-{
-    background-color: sienna;
-    padding: 5px;
-    text-align: center;
-    color: azure;
-}
 .flexbox
 {
     display: flex;

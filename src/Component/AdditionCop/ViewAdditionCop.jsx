@@ -2,8 +2,8 @@ import React, { Component} from 'react';
 import Service from '../../Service/Service';
 import "../../CSS/view.css";
 import Header from '../Header/Header';
-import ErrorPage from "../ErrorPage/ErrorPage";
 import { toast } from 'react-toastify';
+import ErrorPage from '../Error Page/ErrorPage';
 
 export default class ViewAdditionalCop  extends Component{
     constructor(props) {
@@ -11,11 +11,15 @@ export default class ViewAdditionalCop  extends Component{
         this.state = {
             AdditionalCop: [],
                 search : '',
+                central: false,
         }
         this.handleSearch = this.handleSearch.bind(this);
     }
-
     componentDidMount(){
+        if(localStorage.getItem('role') === '[TRAFFIC CENTRAL]')
+        {
+            this.setState( { central : true});
+        }
         Service.viewAdditionalcop().then((res)=>{
             this.setState( { AdditionalCop : res.data} );
                 // console.log(AdditionalCop);
@@ -26,7 +30,7 @@ export default class ViewAdditionalCop  extends Component{
                     message = "Invalid Credentials"
                 }else if(Error['response'].status === 404 )
                 {
-                    <ErrorPage/>
+                    message = "Page Not Found";
                 } else {
                     message = 'OPPS! Network error';
                 }    
@@ -47,9 +51,9 @@ export default class ViewAdditionalCop  extends Component{
     render() {
         return (
             <div>
-                <div className='head'>
-                    <Header />
-                </div>
+                { this.state.central &&
+                <>
+                <Header />
                 <div className='body'>
                     <h2 className="text-center">Additional Cop</h2>
                     <div className="input-group search">
@@ -91,7 +95,12 @@ export default class ViewAdditionalCop  extends Component{
                         </table>
                     </div>
                     </div>
+                </>
+                }
+                { !this.state.central &&
+                    <ErrorPage />
+                }
             </div>
-        )
+        );
     }
 }

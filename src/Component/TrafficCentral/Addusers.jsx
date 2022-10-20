@@ -1,11 +1,19 @@
-import React from "react";
+import React, {useState,useEffect} from "react";
 import { useHistory } from "react-router-dom";
 import Header from "../Header/Header";
 import '../../CSS/trafficcentral.css';
+import ErrorPage from "../Error Page/ErrorPage";
 
 export default function Addusers()
 {
     const history= useHistory();
+    const [central,setCentral]=useState(false);
+    useEffect(()=>{
+        if(localStorage.getItem('role') === '[TRAFFIC CENTRAL]')
+        {
+            setCentral(true);
+        }
+    },[])
     const handlesubmitcop = (e)=>{
         e.preventDefault();
         history.push("/addcop");
@@ -19,6 +27,8 @@ export default function Addusers()
         history.push("/addmedical");
     }
     return (
+        <>
+        { central &&            
         <div className="home">
             <Header />
             <div className='flexbox'>
@@ -44,7 +54,10 @@ export default function Addusers()
                         </div>
                     </div>
                 </div>
-        </div>
-      
+        </div>}
+        { !central &&
+            <ErrorPage />
+        }
+      </>
     );
 }

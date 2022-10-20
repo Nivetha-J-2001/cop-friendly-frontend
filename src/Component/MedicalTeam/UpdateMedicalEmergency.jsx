@@ -1,20 +1,27 @@
 import React, { Component} from 'react';
 import Service from '../../Service/Service';
 import "../../CSS/view.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheckCircle, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import Header from '../Header/Header';
-import ErrorPage from "../ErrorPage/ErrorPage";
 import { toast } from 'react-toastify';
-export default class ViewMedicalTeam  extends Component{
+import ErrorPage from '../Error Page/ErrorPage';
+
+export default class MedicalTeam  extends Component{
     constructor(props) {
         super(props)
         this.state = {
                 MedicalEmergency: [],
                 search : '',
+                medical : false,
         }
         this.handleSearch = this.handleSearch.bind(this);
     }
-
     componentDidMount(){
+        if(localStorage.getItem('role') === '[MEDICAL TEAM]')
+        {
+            this.setState( {medical : true});
+        }
         Service.viewMedicalemergency().then((res)=>{
             this.setState( { MedicalEmergency : res.data} );
                 // console.log(MedicalEmergency);
@@ -25,7 +32,7 @@ export default class ViewMedicalTeam  extends Component{
                     message = "Invalid Credentials"
                 }else if(Error['response'].status === 404 )
                 {
-                    <ErrorPage/>
+                    message = "Page Not Found";
                 } else {
                     message = 'OPPS! Network error';
                 }    
@@ -34,7 +41,7 @@ export default class ViewMedicalTeam  extends Component{
     }
 
     handleSearch(e){
-        this.setState({search: e.target.value}); 
+        this.setState({search: e.target.value});
         Service.FindMedicalemergencyByKeyword(this.state.search).then((res)=>{
             this.setState( {MedicalEmergency : res.data });
             // console.log(this.state.MedicalEmergency);
@@ -42,13 +49,34 @@ export default class ViewMedicalTeam  extends Component{
             console.log(error);
         });
     };
+    
+    onEdit(medical){
+        medical.status="Send";
+        Service.UpdateMedicalemergency(medical).then((res)=>{
+            this.componentDidMount();
+        },error=>{
+            console.log(error);
+        }
+        
+        );
+    };
+    onDelete(medical){
+        medical.status="Rejected";
+        Service.UpdateMedicalemergency(medical).then((res)=>{
+            this.componentDidMount();
+        },error=>{
+            console.log(error);
+        }
+        
+        );
+    };
 
     render() {
         return (
             <div>
-                <div className='head'>
+                { this.state.medical &&
+                <>
                     <Header />
-                </div>
                 <div className='body'>
                     <h2 className="text-center">Medical Emergency</h2>
                     <div className="input-group search">
@@ -68,6 +96,7 @@ export default class ViewMedicalTeam  extends Component{
                                     <th>Priority</th>
                                     <th>Date</th>
                                     <th>Status</th>
+                                    <th>Action</th>
                                 </tr>
                         </thead>
                             <tbody>
@@ -83,6 +112,18 @@ export default class ViewMedicalTeam  extends Component{
                                             <td> {medical.priority}</td>
                                             <td> {medical.createdAt}</td>
                                             <td> {medical.status}</td>
+                                            <td>
+                                                <div className='action'>
+                                                    <div onClick={(e) => this.onEdit(medical)} className="check">
+                                                        <FontAwesomeIcon icon={faCheckCircle} />
+                                                        Accept
+                                                    </div>
+                                                    <div onClick={(e) => this.onDelete(medical)} className="delete">
+                                                        <FontAwesomeIcon icon={faCircleXmark} />
+                                                        Reject
+                                                    </div>
+                                                </div>
+                                            </td>
                                         </tr>
                                     )
                                 }
@@ -90,6 +131,10 @@ export default class ViewMedicalTeam  extends Component{
                         </table>
                     </div>
                     </div>
+                </>}
+                { !this.state.medical &&
+                    <ErrorPage/>
+                }
             </div>
         )
     }

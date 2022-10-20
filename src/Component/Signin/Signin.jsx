@@ -20,7 +20,7 @@ export default function Signin()
             localStorage.setItem('useremail',res.data.email);
             localStorage.setItem('role',res.data.roles);
             localStorage.setItem('userid',res.data.id);
-            // history.push("/medicalteam");
+            toast.success("SignIn Successfully...");
             if(localStorage.getItem('role') === '[TRAFFIC COP]'){
                 history.push("/trafficcop");
             }

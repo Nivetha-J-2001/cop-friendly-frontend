@@ -1,14 +1,21 @@
 import { faUsers, faFileInvoice, faPeopleGroup, faTruckMedical} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { useHistory } from "react-router-dom";
-
 import '../../CSS/trafficcentral.css';
+import ErrorPage from "../Error Page/ErrorPage";
 import Header from "../Header/Header";
 
 export default function TrafficCentral()
 {
     const history= useHistory();
+    const [central,setCentral]=useState(false);
+    useEffect(()=>{
+        if(localStorage.getItem('role') === '[TRAFFIC CENTRAL]')
+        {
+            setCentral(true);
+        }
+    },[])
     const handlesubmituser = (e)=>{
         e.preventDefault();
         history.push("/addusers");
@@ -26,10 +33,12 @@ export default function TrafficCentral()
         history.push("/additionalcop");
     }
     return (
-        <div className="home">
+        <div>
+        { central &&
+        <div>
             <Header />
             <div className='flexbox'>
-            <div className="card">
+                    <div className="card">
                         <div className="card-body">
                             <div alt="user1" >
                                 <FontAwesomeIcon icon={faUsers} className="card-img"/>
@@ -65,9 +74,11 @@ export default function TrafficCentral()
                             <button className="btn btn-primary" onClick={handlesubmitmedical}>view</button>
                         </div>
                     </div>
-                    
-                </div>
+            </div>
+        </div>}
+        { !central &&
+            <ErrorPage/>
+        }
         </div>
-      
     );
 }

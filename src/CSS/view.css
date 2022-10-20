@@ -2,10 +2,10 @@
 {
     margin-top: 50px;
     justify-content: center;
-    
 }
 .listtable
 {
+    background-color: aliceblue;
    text-align: center;
     table-layout: auto;
     text-transform: capitalize;

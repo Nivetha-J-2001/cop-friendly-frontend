@@ -1,12 +1,20 @@
 import { faPeopleGroup} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { useHistory } from "react-router-dom";
 import Header from "../Header/Header";
 import '../../CSS/trafficcentral.css';
+import ErrorPage from "../Error Page/ErrorPage";
 
 export default function AdditionalCop()
 {
+    const [central,setCentral]=useState(false);
+    useEffect(()=>{
+        if(localStorage.getItem('role') === '[TRAFFIC CENTRAL]')
+        {
+            setCentral(true);
+        }
+    },[])
     const history= useHistory();
     const handlesubmitrequestaddition = (e)=>{
         e.preventDefault();
@@ -17,6 +25,8 @@ export default function AdditionalCop()
         history.push("/viewadditioncop");
     }
     return (
+        <>
+        { central && 
         <div className="home">
             <Header />
             <div className='flexbox'>
@@ -40,5 +50,10 @@ export default function AdditionalCop()
                 </div>                    
             </div>
         </div>
+        }
+        { !central &&
+            <ErrorPage />
+        }
+        </>
     );
 }

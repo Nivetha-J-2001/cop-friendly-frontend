@@ -1,10 +1,11 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { useHistory } from "react-router-dom";
 import Service from "../../Service/Service";
 import '../../CSS/addviolation.css';
 import Header from "../Header/Header";
 import { toast } from "react-toastify";
-import ErrorPage from "../ErrorPage/ErrorPage";
+import ErrorPage from "../Error Page/ErrorPage";
+
 export default function Addviolationdetails() {
     const history = useHistory();
     const [ViolatorName,setViolatorName]=useState('');
@@ -20,7 +21,13 @@ export default function Addviolationdetails() {
     const [paymentType,setPaymentType]=useState('');
     let PaymentStatus = '';
     const [visible,setVisible]=useState(false);
-    
+    const [cop,setCop]=useState(false);
+    useEffect(()=>{
+        if(localStorage.getItem('role') === '[TRAFFIC COP]')
+        {
+            setCop(true);
+        }
+    },[])
     const handleSubmitClick = (e) => 
     {
         e.preventDefault();
@@ -47,7 +54,7 @@ export default function Addviolationdetails() {
                     message = "Invalid Credentials"
                 }else if(Error['response'].status === 404 )
                 {
-                    <ErrorPage/>
+                    message = "Page Not Found";
                 } else {
                     message = 'OPPS! Network error';
                 }    
@@ -111,7 +118,9 @@ export default function Addviolationdetails() {
     };
         
     return (
-        <div className="head">
+        <>
+        { cop &&
+        <div>
             <Header />
 
         <div className="signupform" >
@@ -277,6 +286,10 @@ export default function Addviolationdetails() {
                 </div>
             </form>
         </div>
-    </div>
+        </div>}
+        { !cop &&
+            <ErrorPage />
+        }
+        </>
     );
 }

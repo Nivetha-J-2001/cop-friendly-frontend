@@ -1,10 +1,10 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { useHistory } from "react-router-dom";
 import Service from "../../Service/Service";
 import '../../CSS/signin.css';
 import Header from "../Header/Header";
 import { toast } from "react-toastify";
-import ErrorPage from "../ErrorPage/ErrorPage";
+import ErrorPage from "../Error Page/ErrorPage";
 
 export default function AddMedicalEmergency() {
     const history = useHistory();
@@ -14,7 +14,13 @@ export default function AddMedicalEmergency() {
     const [location,setLocation]=useState('');
     let priority='';
     const level={priority};
-    
+    const [cop,setCop]=useState(false);
+    useEffect(()=>{
+        if(localStorage.getItem('role') === '[TRAFFIC COP]')
+        {
+            setCop(true);
+        }
+    },[])
     const handleSubmitClick = (e) => 
     {
         e.preventDefault();
@@ -33,7 +39,7 @@ export default function AddMedicalEmergency() {
                     message = "Invalid Credentials"
                 }else if(Error['response'].status === 404 )
                 {
-                    <ErrorPage/>
+                    message = "Page Not Found";
                 } else {
                     message = 'OPPS! Network error';
                 }    
@@ -81,6 +87,8 @@ export default function AddMedicalEmergency() {
     
         
     return (
+        <>
+        { cop && 
         <>
         <Header/>
         <div className="signupform">
@@ -156,6 +164,11 @@ export default function AddMedicalEmergency() {
                 </div>
             </form>
         </div>
+        </>
+        }
+        { !cop &&
+            <ErrorPage/>
+        }
         </>
     );
 }

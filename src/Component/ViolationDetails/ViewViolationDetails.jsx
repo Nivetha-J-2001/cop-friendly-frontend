@@ -3,7 +3,7 @@ import Service from '../../Service/Service';
 import "../../CSS/view.css";
 import Header from '../Header/Header';
 import { toast } from 'react-toastify';
-import ErrorPage from '../ErrorPage/ErrorPage';
+import ErrorPage from '../Error Page/ErrorPage';
 
 export default class viewViolationdetails extends Component{
     constructor(props) {
@@ -11,11 +11,15 @@ export default class viewViolationdetails extends Component{
         this.state = {
                 ViolationDetails: [],
                 search : '',
+                central: false,
         }
         this.handleSearch = this.handleSearch.bind(this);
     }
-
     componentDidMount(){
+        if(localStorage.getItem('role') === '[TRAFFIC CENTRAL]')
+        {
+            this.setState( {central : true } );
+        }
         Service.viewViolationdetails().then((res)=>{
             this.setState( { ViolationDetails : res.data} );
             },(Error)=>{
@@ -25,7 +29,7 @@ export default class viewViolationdetails extends Component{
                     message = "Invalid Credentials"
                 }else if(Error['response'].status === 404 )
                 {
-                    <ErrorPage/>
+                    message = "Page Not Found";
                 } else {
                     message = 'OPPS! Network error';
                 }    
@@ -46,9 +50,9 @@ export default class viewViolationdetails extends Component{
     render() {
         return (
             <div>
-                <div className='head'>
+                { this.state.central &&
+                <>
                     <Header />
-                </div>
                 <div className='body'>
                     <h2 className="text-center">Violation Details</h2>
                     <div className="input-group search">
@@ -98,6 +102,10 @@ export default class viewViolationdetails extends Component{
                         </table>
                     </div>
                     </div>
+                    </>}
+                    { !this.state.central &&
+                        <ErrorPage />
+                    }
             </div>
         )
     }

@@ -1,10 +1,10 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { useHistory } from "react-router-dom";
 import Service from "../../Service/Service";
 import '../../CSS/signin.css';
 import Header from "../Header/Header";
 import { toast } from "react-toastify";
-import ErrorPage from "../ErrorPage/ErrorPage";
+import ErrorPage from "../Error Page/ErrorPage";
 
 function AddTrafficCentral() {
     const history = useHistory();
@@ -13,7 +13,13 @@ function AddTrafficCentral() {
     const [mobileNumber,setMobileName]=useState('');
     const [password,setPassword]=useState('');
     const [confirmPassword,setConfirmPassword]=useState('');
-    
+    const [central,setCentral]=useState(false);
+    useEffect(()=>{
+        if(localStorage.getItem('role') === '[TRAFFIC CENTRAL]')
+        {
+            setCentral(true);
+        }
+    },[])
     const handleSubmitClick = (e) => 
     {
         e.preventDefault();
@@ -31,7 +37,7 @@ function AddTrafficCentral() {
                     message = "Invalid Credentials"
                 }else if(Error['response'].status === 404 )
                 {
-                    <ErrorPage/>
+                    message = "Page Not Found";
                 } else {
                     message = 'OPPS! Network error';
                 }    
@@ -84,6 +90,8 @@ function AddTrafficCentral() {
     };
         
     return (
+        <>
+        { central &&
         <>
         <Header />
         <div className="signupform">
@@ -156,6 +164,10 @@ function AddTrafficCentral() {
                 </div>
             </form>
         </div>
+        </>}
+        { !central &&
+            <ErrorPage />
+        }
         </>
     );
 }
