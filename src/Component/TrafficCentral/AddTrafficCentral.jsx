@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { useHistory } from "react-router-dom";
 import Service from "../../Service/Service";
-import '../../CSS/signin.css';
+import '../../CSS/form.css';
 import Header from "../Header/Header";
 import { toast } from "react-toastify";
 import ErrorPage from "../Error Page/ErrorPage";
@@ -45,6 +45,10 @@ function AddTrafficCentral() {
           });
         
     };
+    const handleCancelClick = (e)=>{
+        e.preventDefault();
+        history.push('/addusers');
+    }
     
     const validateemail = (email) => {
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
@@ -91,80 +95,80 @@ function AddTrafficCentral() {
         
     return (
         <>
-        { central &&
-        <>
         <Header />
-        <div className="signupform">
-            <form>
-                <h3 className="text-white">Add Traffic Central</h3>
-                <div className="form-item">
-                    
-                    <div className="form-group">
-                        <input type="email"
-                            className="form-control"
-                            placeholder="Enter email"
-                            id="email"
-                            value={email}
-                            onChange={(e)=> {setEmail(e.target.value);}} required />
-                    </div>
-                    <p>{ validateemail(email)}</p>
-
-                    <div className="form-group">
-                        <input type="text"
-                            className="form-control"
-                            placeholder="Enter Username"
-                            id="username"
-                            value={username}
-                            onChange={(e)=>{setUsername(e.target.value);}} required />
-                    </div>
-                    <p>{validateusername(username)}</p>
-
-                    <div className="form-group">
-                        <input type="text"
-                            maxLength="10"
-                            className="form-control"
-                            pattern="[1-9]{1}[0-9]{9}"
-                            placeholder="Enter Mobilenumber"
-                            id="mobileNumber"
-                            value={mobileNumber}
-                            onChange={(e)=> {setMobileName(e.target.value); }}
-                            required />
-                    </div>
-                    <p>{validatemobile(mobileNumber)}</p>
-
-                    <div className="form-group">
-                        <input type="password"
-                            className="form-control"
-                            placeholder="Password"
-                            id="password"
-                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                            value={password}
-                            onChange={(e)=>{setPassword(e.target.value); }}
-                            required />
-                    </div>
-                    <p>{validatepassword(password)}</p>
-
-                    <div className="form-group">
-                        <input type="password"
-                            className="form-control"
-                            placeholder="Confirm Password"
-                            id="confirmPassword"
-                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                            value={confirmPassword}
-                            onChange={(e)=>{setConfirmPassword(e.target.value); }}
-                            required />
-                    </div>
-                    <p>{validateconfirmpassword(confirmPassword)}</p>
-
-                    <div className="text-center">
-                        <button type="submit" className="btn btn-primary" id="submitButton"
-                        disabled={ !(email && mobileNumber && password && username && confirmPassword)? true : false}
-                        onClick={handleSubmitClick}>Submit</button>
-                    </div>
+        { central &&
+        <section>
+            <div className="imgBx">
+                <img src="/Images/home.jpg" alt="home"></img>
+            </div>
+            <div className="content">
+                <div className="formBx">
+                    <h2>Add Traffic Central</h2>
+                    <form>
+                        <div className="inputBx">
+                            <input type="email"
+                                placeholder="Enter email"
+                                id="email"
+                                value={email}
+                                onChange={(e)=> {setEmail(e.target.value);}} required />
+                            <p>{ validateemail(email)}</p>
+                        </div>
+                        <div className="inputBx">
+                            <input type="text"
+                                className="form-control"
+                                placeholder="Enter Username"
+                                id="username"
+                                value={username}
+                                onChange={(e)=>{setUsername(e.target.value);}} required />
+                            <p>{validateusername(username)}</p>
+                        </div>
+                        <div className="inputBx">
+                            <input type="text"
+                                maxLength="10"
+                                className="form-control"
+                                pattern="[1-9]{1}[0-9]{9}"
+                                placeholder="Enter Mobilenumber"
+                                id="mobileNumber"
+                                value={mobileNumber}
+                                onChange={(e)=> {setMobileName(e.target.value); }}
+                                required />
+                            <p>{validatemobile(mobileNumber)}</p>
+                        </div>
+                        <div className="inputBx">
+                            <input type="password"
+                                className="form-control"
+                                placeholder="Password"
+                                id="password"
+                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                                value={password}
+                                onChange={(e)=>{setPassword(e.target.value); }}
+                                required />
+                            <p>{validatepassword(password)}</p>
+                        </div>
+                        <div className="inputBx">
+                            <input type="password"
+                                placeholder="Confirm Password"
+                                id="confirmPassword"
+                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                                value={confirmPassword}
+                                onChange={(e)=>{setConfirmPassword(e.target.value); }}
+                                required />
+                            <p>{validateconfirmpassword(confirmPassword)}</p>
+                        </div>
+                        <div className="inputBx">
+                            <input type="submit" value="Submit" id="submit"
+                            disabled={ !(email && mobileNumber && password && username && confirmPassword)? true : false}
+                            onClick={handleSubmitClick} />
+                        </div>
+                        <div className="inputBx">
+                            <input type="submit" value="Cancel"  id="reset"
+                            onClick={handleCancelClick} />
+                        </div>
+                    </form>
                 </div>
-            </form>
-        </div>
-        </>}
+            </div>
+        </section>
+        }        
         { !central &&
             <ErrorPage />
         }

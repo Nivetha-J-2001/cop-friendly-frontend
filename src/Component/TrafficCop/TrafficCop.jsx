@@ -1,9 +1,9 @@
-import { faFileInvoice, faPeopleGroup, faTruckMedical} from "@fortawesome/free-solid-svg-icons";
+import { faFilePen, faPeopleGroup, faTruckMedical} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, {useState,useEffect} from "react";
 import { useHistory } from "react-router-dom";
 import Header from "../Header/Header";
-import '../../CSS/trafficcentral.css';
+import '../../CSS/card.css';
 import ErrorPage from "../Error Page/ErrorPage";
 
 export default function TrafficCop()
@@ -34,39 +34,39 @@ export default function TrafficCop()
     return (
         <>
         { cop &&
-            <div className="home">
-                <Header />
-                <div className='flexbox'>
-                        <div className="card">
-                            <div className="card-body">
-                                <div alt="user1" >
-                                    <FontAwesomeIcon icon={faFileInvoice} className="card-img" />
-                                </div>
-                                <h4 className="card-title">Violation Details</h4>
-                                <button className="btn btn-primary" onClick={handlesubmitviolation}>Add</button>
+            <div className="main">
+                <Header/>
+                <div className="flexbox">
+                    <div className="responsive">
+                        <div className="gallery">
+                            <FontAwesomeIcon icon={faFilePen} className="img" />
+                            <div className="desc">
+                                <h3 >Violation Details</h3>
+                                <input type="button"  onClick={handlesubmitviolation} value="Add" />
                             </div>
                         </div>
-                        <div className="card">
-                            <div className="card-body">
-                                <div alt="user1" >
-                                    <FontAwesomeIcon icon={faPeopleGroup} className="card-img" />
-                                </div>
-                                <h4 className="card-title">Additional Cop</h4>
-                                <button className="btn btn-primary" onClick={handlesubmitaddition}>Add</button>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <div className="card-body">
-                                <div  alt="user1" >
-                                    <FontAwesomeIcon icon={faTruckMedical} className="card-img" />
-                                </div>
-                                <h4 className="card-title">Medical Team</h4>
-                                <button className="btn btn-primary" onClick={handlesubmitmedical}>Add</button>
-                            </div>
-                        </div>
-                        
                     </div>
-            </div>}
+                    <div className="responsive">
+                        <div className="gallery">
+                            <FontAwesomeIcon icon={faPeopleGroup} className="img" />
+                            <div className="desc">
+                                <h3>Additional Cop</h3>
+                                <input type="button" onClick={handlesubmitaddition} value="Add" />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="responsive">
+                        <div className="gallery">
+                            <FontAwesomeIcon icon={faTruckMedical} className="img" />
+                            <div className="desc">
+                                <h3 >Medical Team</h3>
+                                <input type="button"  onClick={handlesubmitmedical} value="Add" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
         { !cop &&
             <ErrorPage />
         }

@@ -78,7 +78,7 @@ export default class MedicalTeam  extends Component{
                 <>
                     <Header />
                 <div className='body'>
-                    <h2 className="text-center">Medical Emergency</h2>
+                    <h2 className="text-center" >Medical Emergency</h2>
                     <div className="input-group search">
                         <input className='inputvalue' type="text"
                         placeholder='Enter the status or priority to filter...'
@@ -114,14 +114,14 @@ export default class MedicalTeam  extends Component{
                                             <td> {medical.status}</td>
                                             <td>
                                                 <div className='action'>
-                                                    <div onClick={(e) => this.onEdit(medical)} className="check">
+                                                    <button onClick={(e) => this.onEdit(medical)} className="check">
                                                         <FontAwesomeIcon icon={faCheckCircle} />
                                                         Accept
-                                                    </div>
-                                                    <div onClick={(e) => this.onDelete(medical)} className="delete">
+                                                    </button>
+                                                    <button onClick={(e) => this.onDelete(medical)} className="delete">
                                                         <FontAwesomeIcon icon={faCircleXmark} />
                                                         Reject
-                                                    </div>
+                                                    </button>
                                                 </div>
                                             </td>
                                         </tr>

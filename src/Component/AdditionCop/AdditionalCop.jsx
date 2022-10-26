@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, {useEffect, useState} from "react";
 import { useHistory } from "react-router-dom";
 import Header from "../Header/Header";
-import '../../CSS/trafficcentral.css';
+import '../../CSS/form.css';
 import ErrorPage from "../Error Page/ErrorPage";
 
 export default function AdditionalCop()
@@ -27,27 +27,27 @@ export default function AdditionalCop()
     return (
         <>
         { central && 
-        <div className="home">
+        <div className="main">
             <Header />
             <div className='flexbox'>
-                <div className="card">
-                    <div className="card-body">
-                        <div alt="user1" >
-                            <FontAwesomeIcon icon={faPeopleGroup} className="card-img" />
+                <div className="responsive">
+                    <div className="gallery">
+                        <FontAwesomeIcon icon={faPeopleGroup} className="img" />
+                        <div className="desc">
+                            <h3>Additional Cop</h3>
+                            <input type="button" onClick={handlesubmitaddition} value="View" />
                         </div>
-                        <h4 className="card-title">Additional Cop</h4>
-                        <button className="btn btn-primary" onClick={handlesubmitaddition}>view</button>
                     </div>
                 </div>
-                <div className="card">
-                    <div className="card-body">
-                        <div  alt="user1" >
-                            <FontAwesomeIcon icon={faPeopleGroup} className="card-img" />
+                <div className="responsive">
+                        <div className="gallery">
+                            <FontAwesomeIcon icon={faPeopleGroup} className="img" />
+                            <div className="desc">
+                                <h3>Additional Cop</h3>
+                                <input type="button" onClick={handlesubmitrequestaddition} value="Request" />
+                            </div>
                         </div>
-                        <h4 className="card-title">Additional Cop</h4>
-                        <button className="btn btn-primary" onClick={handlesubmitrequestaddition}>Request</button>
-                    </div>
-                </div>                    
+                    </div>                   
             </div>
         </div>
         }

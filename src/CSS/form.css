@@ -3,14 +3,13 @@ section{
     width: 100%;
     height: 90vh;
     display: flex;
-    /* overflow: hidden; */
 }
-section .imgbx{
+section .imgBx{
     position: relative;
     width: 50%;
     height: 100% ;
 }
-section .imgbx::before{
+section .imgBx::before{
     content: '';
     position: absolute;
     top: 0;
@@ -21,7 +20,7 @@ section .imgbx::before{
     z-index: 1;
     mix-blend-mode: screen;
 }
-section .imgbx img{
+section .imgBx img{
     position: absolute;
     top: 0;
     left: 0;
@@ -29,19 +28,19 @@ section .imgbx img{
     height:100% ;  
     object-fit: cover;
 }
-section .contentbx{
+section .content{
     display: flex;
     justify-content: center;
     height: 100%;
     align-items: center;
     width: 50%;
-    /* overflow-y: scroll; */
+    /* top: 50px; */
 }
-section .contentbx .formbx{
-    height: 100%;
+section .content .formBx{
     width: 50%;
+    height: 100%;
 }
-section .contentbx .formbx h2{
+section .content .formBx h2{
     color: #607d8b;
     font-weight: 600;
     font-size: 1.5em;
@@ -51,17 +50,11 @@ section .contentbx .formbx h2{
     display: inline-block;
     letter-spacing: 1px;
 }
-section .contentbx .formbx .inputbx{
+section .content .formBx .inputBx{
     margin-bottom: 20px;
 }
-section .contentbx .formbx .inputbx span{
-    margin-bottom: 5px;
-    display: inline-block;
-    color: black;
-    letter-spacing: 1px;
-}
-section .contentbx .formbx .inputbx input,
-section .contentbx .formbx .inputbx select{
+section .content .formBx .inputBx input ,
+section .content .formBx .inputBx select{
     width: 100%;
     padding: 10px 20px;
     outline: none;
@@ -73,12 +66,7 @@ section .contentbx .formbx .inputbx select{
     background: transparent;
     border-radius: 30px;
 }
-section .contentbx .formbx .inputbx .fine{
-    margin-right: 10px;
-    padding: 3px 15px;
-    background-color: #eb82b3;
-}
-section .contentbx .formbx .inputbx input[type="submit"]{
+section .content .formBx .inputBx input[type="submit"]{
     background: linear-gradient(225deg, #a445b2, #fa4299);
     color: #fff;
     outline: none;
@@ -86,14 +74,14 @@ section .contentbx .formbx .inputbx input[type="submit"]{
     font-weight: 500;
     cursor: pointer;
 }
-section .contentbx .formbx .inputbx input[type="submit"]:hover{
+section .content .formBx .inputBx input[type="submit"]:hover{
     background: #69e65d;
     color: black;
 }
-section .contentbx .formbx .inputbx #reset:hover{
+section .content .formBx .inputBx #reset:hover{
     background: #5690ed;
 }
-section .contentbx .formbx .inputbx input[type="submit"]:disabled{
+section .content .formBx .inputBx input[type="submit"]:disabled{
     background-color: #ac9ea3;
 }
 p{
@@ -101,32 +89,33 @@ p{
 }
 @media(min-width: 768px)
 {
-    section .imgbx{
+    section .imgBx{
         overflow: hidden;
     }
-    section .contentbx{
+    section .contentBx{
         overflow-y: scroll;
+        top:20px;
     }
 
 }
 @media(max-width: 768px)
 {
-    section .imgbx{
+    section .imgBx{
         position: fixed;
         top: 50px;
         left: 0;
         width: 100%;
         height: 100%;
     }
-    section .contentbx{
+    section .content{
         display: flex;
         justify-content: center;
         align-items: center;
         width: 100%;
-        height: 225%;
+        height: 100%;
         z-index: 1;
     }
-    section .contentbx .formbx{
+    section .content .formBx{
         width: 100%;
         padding: 40px;
         background: rgba(244, 239, 239, 0.9);

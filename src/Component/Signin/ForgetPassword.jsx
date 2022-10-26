@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
 import Service from "../../Service/Service";
-import '../../CSS/signin.css';
+import '../../CSS/signinpage.css';
 import { toast } from "react-toastify";
 
 export default function ForgetPassword() {
@@ -76,64 +76,58 @@ export default function ForgetPassword() {
         }
     }
     return (
-        <div className="Head">
-            <h1>Forget Password</h1>
-        <div className="signupform">
-            <form>
-                <h3 className="text-white">Forget password</h3>
-                <div className="form-item">
-                    
-                    <div className="form-group">
-                        <input type="email"
-                            className="form-control"
-                            placeholder="Enter email"
+        <section>
+            <div className="imgBx">
+                <img src="/Images/home.jpg" alt="home"></img>
+            </div>
+            <div className="contentBx">
+                <div className="formBx">
+                    <h2>Forget Password</h2>
+                    <form>
+                        <div className="inputBx">
+                            <span>Email</span>
+                            <input type="email"
                             id="email"
                             value={email}
                             onChange={(e)=> {setEmail(e.target.value);}} required />
-                    </div>
-                    <p>{ validateemail(email)}</p>
-                    {
-                        visibleotp &&
-
-                        <div className="form-group">
-                            <input type="number"
-                            maxLength="6"
-                            className="form-control"
-                            placeholder="Enter Otp"
-                            id="otp"
-                            value={otp}
-                            onChange={ (e) => {setOtp(e.target.value);}}
-                            required/>
+                            <p>{validateemail(email)}</p>
                         </div>
-                    }
-                    {
-                        visiblepass && 
-                        <>
-                        <div className="form-group">
-                            <input type="password"
-                            className="form-control"
-                            placeholder="Password"
-                            id="password"
-                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                            value={password}
-                            onChange={(e)=>{setPassword(e.target.value); }}
-                            required />
+                        {
+                            visibleotp &&
+                            <div className="inputBx">
+                                <span>OTP</span>
+                                <input type="number"
+                                maxLength="6"
+                                id="otp"
+                                value={otp}
+                                onChange={ (e) => {setOtp(e.target.value);}}
+                                required/>
+                            </div>
+                        }
+                        {
+                            visiblepass && 
+                            <div className="inputBx">
+                                <span>Password</span>
+                                <input type="password"
+                                id="password"
+                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                                value={password}
+                                onChange={(e)=>{setPassword(e.target.value); }}
+                                required />
+                                <p>{validatepassword(password)}</p>
+                            </div>                          
+                        }
+                        <div className="inputBx">
+                            <input type="submit" value="Submit" disabled={ !(email)? true : false}
+                        onClick={handleSubmitClick} />
                         </div>
-                        <p>{validatepassword(password)}</p>
-                        </>
-                        
-                    }
-                    
-                    <div className="text-center">
-                        <button type="submit" className="btn btn-primary" id="submitButton"
-                        disabled={ !(email)? true : false}
-                        onClick={handleSubmitClick}>Submit</button>
-                        <button type="submit" className="btn btn-primary" id="resetButton"
-                        onClick={handleCancelClick}>Cancel</button>
-                    </div>
+                        <div className="inputBx">
+                            <input type="submit" value="Cancel" id="reset"
+                            onClick={handleCancelClick} />
+                        </div>
+                    </form>
                 </div>
-            </form>
-        </div>
-        </div>
+            </div>
+        </section>
     );
 }

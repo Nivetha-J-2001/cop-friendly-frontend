@@ -39,12 +39,32 @@ export default class viewViolationdetails extends Component{
 
     handleSearch(e){
         this.setState({search: e.target.value}); 
-        Service.FindViolationdetailsByKeyword(this.state.search).then((res)=>{
-            this.setState( {ViolationDetails : res.data });
-            // console.log(this.state.ViolationDetails);
-        },(error)=>{
-            console.log(error);
-        });
+        if(this.state.search.length >0){
+            Service.FindViolationdetailsByKeyword(this.state.search).then((res)=>{
+                this.setState( {ViolationDetails : res.data });
+                // console.log(this.state.ViolationDetails);
+            },(error)=>{
+                console.log(error);
+            });
+        }
+        else
+        {
+            Service.viewViolationdetails().then((res)=>{
+                this.setState( { ViolationDetails : res.data} );
+                },(Error)=>{
+                    let message;    
+                    if(Error['response'].status === 401 )
+                    {
+                        message = "Invalid Credentials"
+                    }else if(Error['response'].status === 404 )
+                    {
+                        message = "Page Not Found";
+                    } else {
+                        message = 'OPPS! Network error';
+                    }    
+                    toast.error(message);
+                });
+        }
     };
 
     render() {
@@ -58,10 +78,10 @@ export default class viewViolationdetails extends Component{
                     <div className="input-group search">
                         <input className='inputvalue' type="text"
                         placeholder='Enter the Licence no to filter..'
-                        onChange={this.handleSearch} />
+                        onInput={this.handleSearch} />
                     </div>
                     <div className = "listtable table-responsive">
-                        <table className = "table table-bordered ">
+                        <table className = "table table-bordered">
                             <thead>
                                 <tr>
                                     <th>Id</th>

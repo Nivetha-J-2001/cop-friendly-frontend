@@ -55,14 +55,14 @@ export default class ViewAdditionalCop  extends Component{
                 <>
                 <Header />
                 <div className='body'>
-                    <h2 className="text-center">Additional Cop</h2>
+                    <h2 className="text-center" >Additional Cop</h2>
                     <div className="input-group search">
                         <input className='inputvalue' type="text"
                         placeholder='Enter the status or priority to filter...'
                         onChange={this.handleSearch} />
                     </div>
                     <div className = "listtable table-responsive">
-                        <table className = "table table-bordered">
+                        <table className = "table  table-bordered">
                             <thead>
                                 <tr>
                                     <th>Id</th>

@@ -1,29 +1,29 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 .navbar{
+    position: fixed;
     display: flex;
     justify-content: space-around;
     align-items: left;
-    height: 75px;
-    background-color: sienna;
+    height: 50px;
+    background-color: black;
     color: white;
 } 
-h2{
-    padding: 0px 10%;
-}
 li{
     display: flex;
     justify-content: flex-end;
     list-style: none;
     text-decoration: none;
+    }
+li input{
     color: white;
     font-size: 15px;
     padding: 5px 10px;
     margin: 0 14px;
     border: 1px solid rgb(235, 211, 104);
     border-radius: 5px;
+    cursor: pointer;
+    background: linear-gradient(225deg, #a445b2, #fa4299);
+}
+li input:hover{
+    background: #5690ed;
+    color: black;
 }

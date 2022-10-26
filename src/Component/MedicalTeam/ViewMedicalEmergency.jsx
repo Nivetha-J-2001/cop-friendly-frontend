@@ -14,6 +14,7 @@ export default class ViewMedicalTeam  extends Component{
         }
         this.handleSearch = this.handleSearch.bind(this);
     }
+    
     componentDidMount(){
         if(localStorage.getItem('role') === '[TRAFFIC CENTRAL]')
         {
@@ -38,7 +39,7 @@ export default class ViewMedicalTeam  extends Component{
     }
 
     handleSearch(e){
-        this.setState({search: e.target.value}); 
+        this.setState({search: e.target.value});
         Service.FindMedicalemergencyByKeyword(this.state.search).then((res)=>{
             this.setState( {MedicalEmergency : res.data });
             // console.log(this.state.MedicalEmergency);
@@ -56,7 +57,7 @@ export default class ViewMedicalTeam  extends Component{
                 <div className='body'>
                     <h2 className="text-center">Medical Emergency</h2>
                     <div className="input-group search">
-                        <input className='inputvalue' type="text"
+                        <input className='inputvalue' type="search" 
                         placeholder='Enter the status or priority to filter...'
                         onChange={this.handleSearch} />
                     </div>

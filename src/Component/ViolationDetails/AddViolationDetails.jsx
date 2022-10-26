@@ -119,96 +119,82 @@ export default function Addviolationdetails() {
         
     return (
         <>
-        { cop &&
-        <div>
             <Header />
-
-        <div className="signupform" >
-            <form className="register">
-                <h3 className="text-white">Violation Detail</h3>
-                <div className="form-item">
-                    
-                    <div className="form-group">
+        { cop &&
+        <section>
+            <div className="imgbx">
+                <img src="/Images/home.jpg" alt="home"></img>
+            </div>
+            <div className="contentbx">
+                <div className="formbx">
+                <h2>Add Violation Details</h2>
+                <form>
+                    <div className="inputbx">
                         <input type="text"
-                            className="form-control"
                             placeholder="Enter Violator Name"
                             id="name"
                             value={ViolatorName}
                             onChange={(e)=> {setViolatorName(e.target.value);}} required />
+                        <p>{ validate(ViolatorName)}</p>
                     </div>
-                    <p>{ validate(ViolatorName)}</p>
-
-                    <div className="form-group">
+                    <div className="inputbx">
                         <input type="text"
-                            // max="15"
                             pattern="[A-za-z]{2}[0-9]{13}"
-                            className="form-control"
                             placeholder="Enter Licence Number"
                             id="licenceNo"
                             value={LicenceNo}
                             onChange={(e)=> {setLicenceNo(e.target.value); }}
                             required />
-                    </div>
                     <p>{validatelicenceno(LicenceNo)}</p>
-
-                    <div className="form-group">
+                    </div>
+                    <div className="inputbx">
                         <input type="text"
-                            className="form-control"
                             placeholder="Enter Violation Type"
                             id="violationtype"
                             value={violationType}
                             onChange={(e)=> {setViolationType(e.target.value); }}
                             required />
+                        <p>{validate(violationType)}</p>
                     </div>
-                    <p>{validate(violationType)}</p>
-                    
-                    <div className="form-group">
+                    <div className="inputbx">
                         <input type="text"
-                            className="form-control"
                             placeholder="Enter Vehicle Number"
                             id="vehicletype"
                             value={VehicleType}
                             onChange={(e)=> {setVehicleType(e.target.value); }}
                             required />
+                        <p>{validate(VehicleType)}</p>
                     </div>
-                    <p>{validate(VehicleType)}</p>
-                    
-                    <div className="form-group">
-                        <input type="text"
-                            className="form-control"
-                            placeholder="Enter Location"
+                    <div className="inputbx">
+                    <input type="text"
+                           placeholder="Enter Location"
                             id="location"
                             value={Location}
                             onChange={(e)=> {setLocation(e.target.value); }}
                             required />
-                    </div>
                     <p>{validate(Location)}</p>
-                                 
-                    <div className="form-group">
+                    </div>
+                    <div className="inputbx">
                         <input type="email"
-                            className="form-control"
                             placeholder="Enter email"
                             id="email"
                             value={MailId}
                             onChange={(e)=> {setMailId(e.target.value); }}
                             required />
+                        <p>{validatemailid(MailId)}</p>
                     </div>
-                    <p>{validatemailid(MailId)}</p>
-                           
-                    <div className="form-group">
+                    <div className="inputbx">
                         <input type="text"
                             maxLength="10"
-                            className="form-control"
                             pattern="[1-9]{1}[0-9]{9}"
                             placeholder="Enter Mobilenumber"
                             id="mobileNumber"
                             value={mobileNumber}
                             onChange={(e)=> {setMobileName(e.target.value); }}
                             required />
+                        <p>{validatemobile(mobileNumber)}</p>
                     </div>
-                    <p>{validatemobile(mobileNumber)}</p>
-
-                    <div className="form-group">
+                    <div className="inputbx">
                         <input type="date"
                             className="form-control"
                             placeholder="Enter date"
@@ -216,10 +202,9 @@ export default function Addviolationdetails() {
                             value={date}
                             onChange={(e)=> {setDate(e.target.value); }}
                             required />
+                        <p>{validate(date)}</p>
                     </div>
-                    <p>{validate(date)}</p>
-                    
-                    <div className="form-group">
+                    <div className="inputbx">
                         <input type="time"
                             className="form-control"
                             placeholder="Enter Time"
@@ -227,44 +212,34 @@ export default function Addviolationdetails() {
                             value={time}
                             onChange={(e)=>{setTime(e.target.value); }}
                             required />
+                        <p>{validate(time)}</p>
                     </div>
-                    <p>{validate(time)}</p>
-                    
-                    <div className="form-group row" id="radioselect">
-                        <label className="col-sm-3 col-form-label" id="fine">Fine :</label>
-                        <div className="col-sm-2 mt-2">
-                        Yes<input type="radio" className="mx-2" name="isyes" value="1" onClick={ ()=>setVisible(true)} />
-                        </div>
-                        <div className="col-sm-2 mt-2"> 
-                        No<input type="radio" className="mx-2 mt-1" name="isyes" value="0" onClick={ ()=>setVisible(false)} />
-                        </div>
+                    <div className="inputbx" >
+                    <span>Fine :</span>
+                        <button value="Yes" onClick={ ()=>setVisible(true)} className="fine">Yes</button>
+                        <button value="No" onClick={ ()=>setVisible(false)} className="fine">No</button>
                     </div>
                     { visible &&
                         <>
-                            <div className="form-group">
+                            <div className="inputbx">
                                 <input type="number"
-                                    className="form-control"
                                     placeholder="Enter fine amount"
                                     id="fineamount"
                                     value={fineAmount}
                                     onChange={(e)=> {setFineAmount(e.target.value); }}
                                     required />
-                            </div>
-                            <p>{validate(fineAmount)}</p>
-                            
-                            <div className="form-group">
+                                <p>{validate(fineAmount)}</p>
+                            </div>                            
+                            <div className="inputbx">
                                 <input type="text"
-                                    className="form-control"
                                     placeholder="Enter Payment Type"
                                     id="paymentType"
                                     value={paymentType}
                                     onChange={(e)=>{setPaymentType(e.target.value); }}
                                     required />
+                                <p>{validate(paymentType)}</p>
                             </div>
-                            <p>{validate(paymentType)}</p>
-
-                            
-                            <div className="form-group">
+                            <div className="inputbx">
                                 <select  onChange={(e)=>{ PaymentStatus = e.target.value; console.log(PaymentStatus); }}>           
                                     <option >select Payment Status</option>
                                     <option value="Success">Success</option>
@@ -273,20 +248,21 @@ export default function Addviolationdetails() {
                             </div> 
                         </>                   
                     }
-                    <div className="text-center">
-                        <button type="submit" className="btn btn-primary" id="submitButton"
-                        disabled={ !(ViolatorName && violationType && LicenceNo && VehicleType && 
-                            Location && MailId && mobileNumber && date && time)? true : false}
-                        onClick={handleSubmitClick}>Submit</button>
-
-                        <button type="reset" className="btn btn-danger" id="resetButton"
-                        onClick={handleresetClick}>Reset</button>
-                        
+                    <div className="inputbx">
+                    <input type="submit" value="Submit" 
+                    disabled={ !(ViolatorName && violationType && LicenceNo && VehicleType && 
+                        Location && MailId && mobileNumber && date && time)? true : false}
+                    onClick={handleSubmitClick} />
                     </div>
+                    <div className="inputbx">
+                    <input type="submit" value="Reset" id="reset"
+                        onClick={handleresetClick} />
+                    </div>                    
+                </form>
                 </div>
-            </form>
-        </div>
-        </div>}
+            </div>
+        </section>
+        }
         { !cop &&
             <ErrorPage />
         }

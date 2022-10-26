@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { useHistory } from "react-router-dom";
 import Service from "../../Service/Service";
-import '../../CSS/signin.css';
+import '../../CSS/form.css';
 import Header from "../Header/Header";
 import { toast } from "react-toastify";
 import ErrorPage from "../Error Page/ErrorPage";
@@ -88,25 +88,25 @@ export default function AddMedicalEmergency() {
         
     return (
         <>
-        { cop && 
-        <>
         <Header/>
-        <div className="signupform">
-            <form>
-                <h3 className="text-white">Add Medical Emergency</h3>
-                <div className="form-item">
-                    
-                    <div className="form-group">
-                        <input type="text"
-                            className="form-control"
+        { cop && 
+        <section>
+            <div className="imgBx">
+                <img src="/Images/home.jpg" alt="home"></img>
+            </div>
+            <div className="content">
+                <div className="formBx">
+                    <h2>Add Medical Emergency</h2>
+                    <form>
+                        <div className="inputBx">
+                            <input type="text"
                             placeholder="Enter name"
                             id="name"
                             value={name}
                             onChange={(e)=> {setname(e.target.value);}} required />
-                    </div>
-                    <p>{ validatename(name)}</p>
-
-                    <div className="form-group">
+                            <p>{ validatename(name)}</p>
+                        </div>
+                        <div className="inputBx">
                         <input type="text"
                             maxLength="10"
                             className="form-control"
@@ -116,58 +116,53 @@ export default function AddMedicalEmergency() {
                             value={mobileNumber}
                             onChange={(e)=> {setMobileName(e.target.value); }}
                             required />
-                    </div>
-                    <p>{validatemobile(mobileNumber)}</p>
-
-                    <div className="form-group">
-                        <input type="number"
+                            <p>{validatemobile(mobileNumber)}</p>
+                        </div>
+                        <div className="inputBx">
+                            <input type="number"
                             className="form-control"
-                            placeholder="Enter No of Required Meadical Team"
+                            placeholder="Enter No of Required cop"
                             id="noOfRequired"
                             value={noOfRequired}
                             onChange={(e)=>{setNoOfRequired(e.target.value); }}
                             required />
-                    </div>
-                    <p>{validatenoofreqired(noOfRequired)}</p>
-
-                    <div className="form-group">
-                        <input type="text"
+                            <p>{validatenoofreqired(noOfRequired)}</p>
+                        </div>
+                        <div className="inputBx">
+                            <input type="text"
                             className="form-control"
                             placeholder="Enter Loctaion"
                             id="location"
                             value={location}
                             onChange={(e)=>{setLocation(e.target.value); }}
                             required />
-                    </div>
-                    <p>{validatelocation(location)}</p>
-
-                    <div className="form-group">
-                    <select  onChange={(e)=>{ priority = e.target.value ;}}>           
-                        <option >select Priority</option>
-                        <option value="Very Low">Very Low</option>
-                        <option value="Low">Low</option>
-                        <option value="Moderate">Moderate</option>
-                        <option value="High">High</option>
-                        <option value="Very High">Very High</option>
-                    </select>
-                    </div>
-                    
-                    <div className="text-center">
-                        <button type="submit" className="btn btn-primary" id="submitButton"
-                        disabled={ !(name && mobileNumber && level && noOfRequired && location)? true : false}
-                        onClick={handleSubmitClick}>Submit</button>
-
-                        <button type="reset" className="btn btn-danger" id="resetButton"
-                        onClick={handleresetClick}>Reset</button>
-                        
-                    </div>
+                            <p>{validatelocation(location)}</p>
+                        </div>
+                        <div className="inputBx">
+                        <select  onChange={(e)=>{ priority = e.target.value}}>           
+                            <option >select Priority</option>
+                            <option value="Very Low">Very Low</option>
+                            <option value="Low">Low</option>
+                            <option value="Moderate">Moderate</option>
+                            <option value="High">High</option>
+                            <option value="Very High">Very High</option>
+                        </select>
+                        </div>
+                        <div className="inputBx">
+                            <input type="submit" value="Submit" disabled={ !(name && mobileNumber && level && noOfRequired && location)? true : false}
+                        onClick={handleSubmitClick} />
+                        </div>
+                        <div className="inputBx">
+                            <input type="submit" value="Reset" id="reset"
+                        onClick={handleresetClick} />
+                        </div>
+                    </form>
                 </div>
-            </form>
-        </div>
-        </>
+            </div>
+        </section>
         }
-        { !cop &&
-            <ErrorPage/>
+        {!cop && 
+            <ErrorPage />
         }
         </>
     );

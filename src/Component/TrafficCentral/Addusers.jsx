@@ -1,7 +1,7 @@
 import React, {useState,useEffect} from "react";
 import { useHistory } from "react-router-dom";
 import Header from "../Header/Header";
-import '../../CSS/trafficcentral.css';
+import '../../CSS/card.css';
 import ErrorPage from "../Error Page/ErrorPage";
 
 export default function Addusers()
@@ -29,31 +29,37 @@ export default function Addusers()
     return (
         <>
         { central &&            
-        <div className="home">
+        <div className="main">
             <Header />
             <div className='flexbox'>
-                    <div className="card">
-                        <div className="card-body">
-                            <img className="card-img-top" src="/Images/user1.jpg" alt="user1" />
-                            <h4 className="card-title">Traffic cop</h4>
-                            <button className="btn btn-primary" onClick={handlesubmitcop}>Add</button>
-                        </div>
-                    </div>
-                    <div className="card">
-                        <div className="card-body">
-                            <img className="card-img-top" src="/Images/user2.jpg" alt="user1" />
-                            <h4 className="card-title">Traffic Central Team</h4>
-                            <button className="btn btn-primary" onClick={handlesubmitcentral}>Add</button>
-                        </div>
-                    </div>
-                    <div className="card">
-                        <div className="card-body">
-                            <img className="card-img-top" src="/Images/user3.jpg" alt="user1" />
-                            <h4 className="card-title">Medical Team</h4>
-                            <button className="btn btn-primary" onClick={handlesubmitmedical}>Add</button>
+                <div className="responsive">
+                    <div className="gallery">
+                        <img className="img" src="/Images/user1.jpg" alt="user1" />
+                        <div className="desc">
+                            <h3> Traffic Cop</h3>
+                            <input type="button" onClick={handlesubmitcop} value="Add" />
                         </div>
                     </div>
                 </div>
+                <div className="responsive">
+                    <div className="gallery">
+                        <img  className="img" src="/Images/user2.jpg" alt="user1" />
+                        <div className="desc">
+                            <h3>Traffic Central</h3>
+                            <input type="button"  onClick={handlesubmitcentral} value="Add" />
+                        </div>
+                    </div>
+                </div>
+                <div className="responsive">
+                    <div className="gallery">
+                        <img className="img" src="/Images/user3.jpg" alt="user1" />
+                        <div className="desc">
+                            <h3>Medical Team</h3>
+                            <input type="button" onClick={handlesubmitmedical} value="Add" />
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>}
         { !central &&
             <ErrorPage />

@@ -2,7 +2,7 @@ import React from "react";
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Signin from "./Component/Signin/Signin";
+import Signin from "./Component/Signin/SignInpage";
 import AddMedicalTeam from "./Component/MedicalTeam/AddMedicalTeam";
 import AddTrafficCentral from "./Component/TrafficCentral/AddTrafficCentral";
 import AddTrafficCop from "./Component/TrafficCop/AddTrafficCop";
@@ -24,7 +24,6 @@ export default function Routing() {
 
  return (
   <div>
-
     <Router>
       <div>  
               <Route path = "/" exact component={Signin} />

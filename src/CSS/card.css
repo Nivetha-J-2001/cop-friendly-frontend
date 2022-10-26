@@ -1,0 +1,59 @@
+html{
+    background: linear-gradient(225deg, #f2427d,#72bcde);
+    /* top: 50px; */
+    background-attachment: fixed;
+}
+.main{
+    top: 50px;
+    background: linear-gradient(225deg,#f2427d,#72bcde) ;
+}
+.flexbox
+{
+    display: flex;
+    justify-content: space-evenly;
+    justify-items:center;
+    margin: 10% 10%;
+    flex-wrap: wrap;
+}
+.responsive {
+    padding: 0 6px;
+    /* width: 24.99999%; */
+    
+  }
+div.gallery {
+    border: 1px solid #ccc;
+    background-color: white;
+    padding: 5px;
+  }
+  
+  div.gallery:hover {
+    border: 1px solid #777;
+  }
+  
+  div.gallery .img {
+    
+    width: 100%;
+    height: 150px;
+    min-width: 150px;
+    color: rgb(0, 0, 0);
+  }
+  
+  div.desc {
+    padding: 15px;
+    text-align: center;
+    width: 100%;
+    color: black;
+  }
+  div.desc h3{
+    width: max-content;
+  }
+  div .desc input{
+    background: linear-gradient(225deg, #a445b2, #fa4299);
+    border: 2px solid rgb(235, 225, 116);
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: white;
+  }
+ 
+  

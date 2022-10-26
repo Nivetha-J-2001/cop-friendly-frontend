@@ -1,11 +1,10 @@
-import React, {useState} from "react";
+import React , {useState} from "react";
 import { useHistory } from "react-router-dom";
 import Service from "../../Service/Service";
-import '../../CSS/signin.css';
+import '../../CSS/signinpage.css';
 import { toast } from "react-toastify";
 
-export default function Signin()
-{
+export default function SignInpage() {
     localStorage.clear();
     const history = useHistory();
     const [email,setEmail]=useState('');
@@ -40,61 +39,57 @@ export default function Signin()
         history.push("/forgetpassword");
     }
 
-    const validateemail = (email) => {
-        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+    // const validateemail = (email) => {
+    //     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
         
-        if (!email) {
-            return "Email is required!";
-        } else if (!regex.test(email)) {
-            return "This is not a valid email format!";
-        }
-    };
-    const validatepassword=(password)=>{
-        if (!password) {
-            return  "Password is required";
-        }         
-    };
-        
-    return (
-        <div className="Head">
-            <h1>SignIn</h1>
-        <div className="signupform">
-            <form>
-                <h3 className="text-white">Register</h3>
-                <div className="form-item">
-                    
-                    <div className="form-group">
-                        <input type="email"
-                            className="form-control"
-                            placeholder="Enter email"
+    //     if (!email) {
+    //         return "Email is required!";
+    //     } else if (!regex.test(email)) {
+    //         return "This is not a valid email format!";
+    //     }
+    // };
+    // const validatepassword=(password)=>{
+    //     if (!password) {
+    //         return  "Password is required";
+    //     }         
+    // };
+
+    return(
+        <section>
+            <div className="imgBx">
+                <img src="/Images/home.jpg" alt="home"></img>
+            </div>
+            <div className="contentBx">
+                <div className="formBx">
+                    <h2>Login</h2>
+                    <form>
+                        <div className="inputBx">
+                            <span>Email</span>
+                            <input type="email"
                             id="email"
                             value={email}
                             onChange={(e)=> {setEmail(e.target.value);}} required />
-                    </div>
-                    <p>{ validateemail(email)}</p>
-
-                    <div className="form-group">
-                        <input type="password"
-                            className="form-control"
-                            placeholder="Password"
+                        </div>
+                        <div className="inputBx">
+                            <span>Password</span>
+                            <input type="password"
                             id="password"
                             pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                             value={password}
                             onChange={(e)=>{setPassword(e.target.value); }}
                             required />
-                    </div>
-                    <p>{validatepassword(password)}</p>
-
-                    <div className="text-center" >
-                        <button type="submit" className="btn btn-primary" id="submitButton"
-                        disabled={ !(email && password)? true : false}
-                        onClick={handleSubmitClick}>Submit</button>
-                        <button type="submit" className="btn btn-danger" id="forgetButton"
-                        onClick={handleForgetClick}>Forget Password</button>
-                    </div>
+                        </div>
+                        <div className="inputBx">
+                            <input type="submit" value="Submit" disabled={ !(email && password)? true : false}
+                            onClick={handleSubmitClick} />
+                        </div>
+                        <div className="inputBx">
+                            <input type="submit" value="Forget Password" id="reset"
+                            onClick={handleForgetClick} />
+                        </div>
+                    </form>
                 </div>
-            </form>
-        </div>
-    </div>
+            </div>
+        </section>
     );
 }
