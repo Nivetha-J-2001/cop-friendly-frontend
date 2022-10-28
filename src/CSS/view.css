@@ -41,6 +41,7 @@
 {
     background-color: white;
 }
+
 .search
 {
     margin-top: 25px;
@@ -60,13 +61,16 @@
     background: #e3edf1;
     border-radius: 30px;
 }
+.inputvalue:focus{
+    background-color: white;
+}
 span
 {
     margin: 0px 5%;
 }
 .action
 {
-    width: 150px;
+    width: 170px;
 }
 .check
 {

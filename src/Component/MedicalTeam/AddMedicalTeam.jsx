@@ -12,7 +12,6 @@ function AddMedicalTeam() {
     const [username,setUsername]=useState('');
     const [mobileNumber,setMobileName]=useState('');
     const [password,setPassword]=useState('');
-    const [confirmPassword,setConfirmPassword]=useState('');
     const [central,setCentral]=useState(false);
     useEffect(()=>{
         if(localStorage.getItem('role') === '[TRAFFIC CENTRAL]')
@@ -86,12 +85,6 @@ function AddMedicalTeam() {
         }
         
     };
-    const validateconfirmpassword=(confirmPassword)=>{
-        if (password !== confirmPassword) {
-            return  "Password doest not match";
-        }
-        
-    };
         
     return (
         <>
@@ -146,18 +139,8 @@ function AddMedicalTeam() {
                             <p>{validatepassword(password)}</p>
                         </div>
                         <div className="inputBx">
-                            <input type="password"
-                                placeholder="Confirm Password"
-                                id="confirmPassword"
-                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                                value={confirmPassword}
-                                onChange={(e)=>{setConfirmPassword(e.target.value); }}
-                                required />
-                            <p>{validateconfirmpassword(confirmPassword)}</p>
-                        </div>
-                        <div className="inputBx">
                             <input type="submit" value="Submit" id="submit"
-                            disabled={ !(email && mobileNumber && password && username && confirmPassword)? true : false}
+                            disabled={ !(email && mobileNumber && password && username)? true : false}
                             onClick={handleSubmitClick} />
                         </div>
                         <div className="inputBx">

@@ -41,6 +41,7 @@ export default class MedicalTeam  extends Component{
     }
 
     handleSearch(e){
+        e.preventDefault();
         this.setState({search: e.target.value});
         Service.FindMedicalemergencyByKeyword(this.state.search).then((res)=>{
             this.setState( {MedicalEmergency : res.data });
@@ -50,9 +51,10 @@ export default class MedicalTeam  extends Component{
         });
     };
     
-    onEdit(medical){
-        medical.status="Send";
-        Service.UpdateMedicalemergency(medical).then((res)=>{
+    onEdit(medical,e){
+        let medical1={medicalId:medical.medicalId,name:medical.name,phoneNumber:medical.phoneNumber,noOfAffected:medical.noOfAffected,location:medical.location,priority:medical.priority,
+            status:"Sent",user:{id:medical.user.id}};
+        Service.UpdateMedicalemergency(medical1).then((res)=>{
             this.componentDidMount();
         },error=>{
             console.log(error);
@@ -60,9 +62,10 @@ export default class MedicalTeam  extends Component{
         
         );
     };
-    onDelete(medical){
-        medical.status="Rejected";
-        Service.UpdateMedicalemergency(medical).then((res)=>{
+    onDelete(medical,e){
+        let medical1={medicalId:medical.medicalId,name:medical.name,phoneNumber:medical.mobileNumber,noOfAffected:medical.noOfRequired,location:medical.location,priority:medical.priority,
+            status:"Rejected",user:{id:medical.user.id}};
+        Service.UpdateMedicalemergency(medical1).then((res)=>{
             this.componentDidMount();
         },error=>{
             console.log(error);
@@ -114,11 +117,11 @@ export default class MedicalTeam  extends Component{
                                             <td> {medical.status}</td>
                                             <td>
                                                 <div className='action'>
-                                                    <button onClick={(e) => this.onEdit(medical)} className="check">
+                                                    <button onClick={(e) => this.onEdit(medical,e)} className="check">
                                                         <FontAwesomeIcon icon={faCheckCircle} />
                                                         Accept
                                                     </button>
-                                                    <button onClick={(e) => this.onDelete(medical)} className="delete">
+                                                    <button onClick={(e) => this.onDelete(medical,e)} className="delete">
                                                         <FontAwesomeIcon icon={faCircleXmark} />
                                                         Reject
                                                     </button>

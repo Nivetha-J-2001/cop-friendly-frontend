@@ -1,8 +1,3 @@
-html{
-    background: linear-gradient(225deg, #f2427d,#72bcde);
-    /* top: 50px; */
-    background-attachment: fixed;
-}
 .main{
     top: 50px;
     background: linear-gradient(225deg,#f2427d,#72bcde) ;

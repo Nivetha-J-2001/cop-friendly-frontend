@@ -54,7 +54,7 @@ class Service {
     return axios.post(REST_API_URL+"/verifyotp/"+email+"/"+otp);
   }
 
-  //resset password
+  //reset password
   updatePassword(email,password) {
     return axios.post(REST_API_URL+"/resetpassword/"+ email+"/"+ password);
   }

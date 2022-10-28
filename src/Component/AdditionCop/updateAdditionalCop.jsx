@@ -11,13 +11,13 @@ export default class UpdateAdditionalCop  extends Component{
     constructor(props) {
         super(props)
         this.state = {
-            AdditionalCop: [],
+                AdditionalCop: [],
                 search : '',
-                enable: false ,
                 central: false ,
         }
         this.handleSearch = this.handleSearch.bind(this);
     }
+
     componentDidMount(){
         if(localStorage.getItem('role') === '[TRAFFIC CENTRAL]')
         {
@@ -44,6 +44,7 @@ export default class UpdateAdditionalCop  extends Component{
     }
 
     handleSearch(e){
+        e.preventDefault();
         this.setState({search: e.target.value}); 
         Service.FindAdditionalcopByKeyword(this.state.search).then((res)=>{
             this.setState( {AdditionalCop : res.data });
@@ -54,8 +55,13 @@ export default class UpdateAdditionalCop  extends Component{
     };
 
     onEdit(additional,e){
-        additional.status="Send";
-        Service.UpdateAdditionalcop(additional).then((res)=>{
+        // additional.status="Send";
+        let cop={additionalId:additional.additionalId,name:additional.name,phoneNumber:additional.phoneNumber,noOfRequired:additional.noOfRequired,location:additional.location,priority:additional.priority,
+           status:"Sent",user:{id:additional.user.id}
+        }
+        Service.UpdateAdditionalcop(cop).then((res)=>{
+            toast.success('Updated...');
+            // console.log("you are here");
             this.componentDidMount();
         },error=>{
             console.log(error);
@@ -64,8 +70,12 @@ export default class UpdateAdditionalCop  extends Component{
         );
     };
     onDelete(additional,e){
-        additional.status="Rejected";
-        Service.UpdateAdditionalcop(additional).then((res)=>{
+        let cop={additionalId:additional.additionalId,name:additional.name,phoneNumber:additional.phoneNumber,noOfRequired:additional.noOfRequired,location:additional.location,priority:additional.priority,
+                 status:"Rejected",user:{id:additional.user.id}
+         }
+        Service.UpdateAdditionalcop(cop).then((res)=>{
+            toast.success('Updated...');
+            console.log(res);
             this.componentDidMount();
         },error=>{
             console.log(error);
