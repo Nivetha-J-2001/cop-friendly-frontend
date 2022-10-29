@@ -40,12 +40,18 @@ export default class ViewAdditionalCop  extends Component{
 
     handleSearch(e){
         this.setState({search: e.target.value}); 
-        Service.FindAdditionalcopByKeyword(this.state.search).then((res)=>{
-            this.setState( {AdditionalCop : res.data });
-            // console.log(this.state.AdditionalCop);
-        },(error)=>{
-            console.log(error);
-        });
+        if(this.state.search.length >0)
+        {
+            Service.FindAdditionalcopByKeyword(this.state.search).then((res)=>{
+                this.setState( {AdditionalCop : res.data });
+                // console.log(this.state.AdditionalCop);
+            },(error)=>{
+                console.log(error);
+            });
+        }
+        else{
+            this.componentDidMount();
+        }
     };
 
     render() {

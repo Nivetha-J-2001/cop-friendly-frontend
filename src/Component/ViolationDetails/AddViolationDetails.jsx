@@ -17,7 +17,7 @@ export default function Addviolationdetails() {
     const [mobileNumber,setMobileName]=useState('');
     const [date,setDate]=useState('');
     const [time,setTime]=useState('');
-    const [fineAmount,setFineAmount]=useState('');
+    const [fineAmount,setFineAmount]=useState(0);
     const [paymentType,setPaymentType]=useState('');
     let PaymentStatus = '';
     const [visible,setVisible]=useState(false);

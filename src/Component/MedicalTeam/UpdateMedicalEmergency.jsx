@@ -63,7 +63,7 @@ export default class MedicalTeam  extends Component{
         );
     };
     onDelete(medical,e){
-        let medical1={medicalId:medical.medicalId,name:medical.name,phoneNumber:medical.mobileNumber,noOfAffected:medical.noOfRequired,location:medical.location,priority:medical.priority,
+        let medical1={medicalId:medical.medicalId,name:medical.name,phoneNumber:medical.phoneNumber,noOfAffected:medical.noOfAffected,location:medical.location,priority:medical.priority,
             status:"Rejected",user:{id:medical.user.id}};
         Service.UpdateMedicalemergency(medical1).then((res)=>{
             this.componentDidMount();

@@ -12,6 +12,7 @@
 }
 .responsive {
     padding: 0 6px;
+    margin-bottom:10px ;
     /* width: 24.99999%; */
     
   }
@@ -22,7 +23,7 @@ div.gallery {
   }
   
   div.gallery:hover {
-    border: 1px solid #777;
+    border: 1px solid rgb(36, 35, 35);
   }
   
   div.gallery .img {

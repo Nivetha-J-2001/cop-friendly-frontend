@@ -9,7 +9,7 @@ import ErrorPage from "../Error Page/ErrorPage";
 function AddTrafficCop() {
     const history = useHistory();
     const [email,setEmail]=useState('');
-    const [username,setUsername]=useState('');
+    const [name,setname]=useState('');
     const [mobileNumber,setMobileName]=useState('');
     const [password,setPassword]=useState('');
     const [central,setCentral]=useState(false);
@@ -23,7 +23,7 @@ function AddTrafficCop() {
     const handleSubmitClick = (e) => 
     {
         e.preventDefault();
-        let trafficcop={email:email,username:username,password:password,mobileNo:mobileNumber};
+        let trafficcop={email:email,username:name,password:password,mobileNo:mobileNumber};
         Service.createTrafficCop(trafficcop).then((response) => {
             console.log(response);
             toast.success("Signup Successfully");
@@ -60,8 +60,8 @@ function AddTrafficCop() {
         }
         
     };
-    const validateusername = (username)=>{
-        if (!username) {
+    const validateusername = (name)=>{
+        if (!name) {
             return  "Username is required!";
         }
     };
@@ -112,9 +112,9 @@ function AddTrafficCop() {
                                 className="form-control"
                                 placeholder="Enter Username"
                                 id="username"
-                                value={username}
-                                onChange={(e)=>{setUsername(e.target.value);}} required />
-                            <p>{validateusername(username)}</p>
+                                value={name}
+                                onChange={(e)=>{setname(e.target.value);}} required />
+                            <p>{validateusername(name)}</p>
                         </div>
                         <div className="inputBx">
                             <input type="text"
@@ -141,7 +141,7 @@ function AddTrafficCop() {
                         </div>
                         <div className="inputBx">
                             <input type="submit" value="Submit" id="submit"
-                            disabled={ !(email && mobileNumber && password && username)? true : false}
+                            disabled={ !(email && mobileNumber && password && name)? true : false}
                             onClick={handleSubmitClick} />
                         </div>
                         <div className="inputBx">
