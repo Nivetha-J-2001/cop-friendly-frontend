@@ -22,7 +22,7 @@ function AddTrafficCentral() {
     const handleSubmitClick = (e) => 
     {
         e.preventDefault();
-        let trafficcentral={email:email,username:username,password:password,mobileNo:mobileNumber};
+        let trafficcentral={email:email,name:username,password:password,mobileNo:mobileNumber};
         Service.createCentralTeam(trafficcentral).then((response) => {
             console.log(response);
             toast.success("Signup Successfully");

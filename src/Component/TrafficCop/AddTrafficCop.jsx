@@ -23,7 +23,7 @@ function AddTrafficCop() {
     const handleSubmitClick = (e) => 
     {
         e.preventDefault();
-        let trafficcop={email:email,username:name,password:password,mobileNo:mobileNumber};
+        let trafficcop={email:email,name:name,password:password,mobileNo:mobileNumber};
         Service.createTrafficCop(trafficcop).then((response) => {
             console.log(response);
             toast.success("Signup Successfully");

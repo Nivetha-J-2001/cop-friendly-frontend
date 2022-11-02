@@ -121,7 +121,7 @@ export default function AddMedicalEmergency() {
                         <div className="inputBx">
                             <input type="number"
                             className="form-control"
-                            placeholder="Enter No of Required cop"
+                            placeholder="Enter No of Required Medical Team"
                             id="noOfRequired"
                             value={noOfRequired}
                             onChange={(e)=>{setNoOfRequired(e.target.value); }}

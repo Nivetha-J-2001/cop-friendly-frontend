@@ -22,7 +22,7 @@ function AddMedicalTeam() {
     const handleSubmitClick = (e) => 
     {
         e.preventDefault();
-        let medical={email:email,username:username,password:password,mobileNo:mobileNumber};
+        let medical={email:email,name:username,password:password,mobileNo:mobileNumber};
         Service.createMedicalTeam(medical).then((response) => {
             // console.log(response);
             toast.success("Signup Successfully");
