@@ -21,15 +21,15 @@ export default function TrafficCop()
     
     const handlesubmitviolation = (e)=>{
         e.preventDefault();
-        history.push("/AddViolationDetails");
+        history.push("/trafficcop/violationdetail");
     }
     const handlesubmitmedical = (e)=>{
         e.preventDefault();
-        history.push("/addmedicalemergency");
+        history.push("/trafficcop/medicalemergency");
     }
     const handlesubmitaddition =(e)=>{
         e.preventDefault();
-        history.push("/addadditionalcop");
+        history.push("/trafficcop/additionalcop");
     }
     return (
         <>

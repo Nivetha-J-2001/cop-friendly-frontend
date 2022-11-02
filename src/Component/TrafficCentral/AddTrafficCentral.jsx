@@ -26,7 +26,7 @@ function AddTrafficCentral() {
         Service.createCentralTeam(trafficcentral).then((response) => {
             console.log(response);
             toast.success("Signup Successfully");
-            history.push('/trafficcentral');
+            history.push('/trafficcentral/users');
           }, (Error) => {
             let message;    
                 if (Error['response'].status === 409) {
@@ -46,7 +46,7 @@ function AddTrafficCentral() {
     };
     const handleCancelClick = (e)=>{
         e.preventDefault();
-        history.push('/addusers');
+        history.push('/trafficcentral/home');
     }
     
     const validateemail = (email) => {

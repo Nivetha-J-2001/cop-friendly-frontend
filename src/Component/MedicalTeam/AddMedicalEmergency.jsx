@@ -29,7 +29,7 @@ export default function AddMedicalEmergency() {
         Service.AddMedicalemergency(medical).then((response) => {
             // console.log(response);
             toast.success("Added Successfully");
-            history.push('/trafficcop');
+            history.push('/trafficcop/home');
           }, (Error) => {
             let message;    
                 if (Error['response'].status === 409) {

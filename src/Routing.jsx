@@ -28,21 +28,21 @@ export default function Routing() {
       <div>  
               <Route path = "/" exact component={Signin} />
               <Route path = "/forgetpassword" component={ForgetPassword} />
-              <Route path = "/addcop" component={AddTrafficCop } />
-              <Route path = "/addcentral" component={AddTrafficCentral}/>
-              <Route path = "/addmedical" component={AddMedicalTeam}/>
-              <Route path = "/addusers" component = {Addusers} />
-              <Route path = "/viewadditioncop" component={ViewAdditionalCop} />
-              <Route path = "/viewmedicalteam" component={ViewMedicalTeam} />
-              <Route path = "/trafficcentral" component={TrafficCentral} />
-              <Route path = "/viewviolation" component={ViewViolationDetails} />
-              <Route path = "/updateadditionalcop" component={updateAdditionalCop} />
-              <Route path = "/additionalcop" component={AdditionalCop} />
-              <Route path = "/trafficcop" component={TrafficCop } />
-              <Route path = "/addadditionalcop" component={AddAdditionalCop} />
-              <Route path = "/addmedicalemergency" component={AddMedicalEmergency} />
-              <Route path = "/addviolationdetails" component={AddViolationDetails} />
-              <Route path = "/medicalteam" component={MedicalTeam} />
+              <Route path = "/trafficcentral/users/trafficcop" component={AddTrafficCop } />
+              <Route path = "/trafficcentral/users/trafficcentral" component={AddTrafficCentral}/>
+              <Route path = "/trafficcentral/users/medicalteam" component={AddMedicalTeam}/>
+              <Route path = "/trafficcentral/users" component = {Addusers} />
+              <Route path = "/trafficcentral/additionalcops" component={ViewAdditionalCop} />
+              <Route path = "/trafficcentral/medicalteams" component={ViewMedicalTeam} />
+              <Route path = "/trafficcentral/home" component={TrafficCentral} />
+              <Route path = "/trafficcentral/violationdetails" component={ViewViolationDetails} />
+              <Route path = "/trafficcentral/additionalcop" component={updateAdditionalCop} />
+              <Route path = "/trafficcentral/additioncop/home" component={AdditionalCop} />
+              <Route path = "/trafficcop/home" component={TrafficCop } />
+              <Route path = "/trafficcop/additionalcop" component={AddAdditionalCop} />
+              <Route path = "/trafficcop/medicalemergency" component={AddMedicalEmergency} />
+              <Route path = "/trafficcop/violationdetail" component={AddViolationDetails} />
+              <Route path = "/medicalteam/home" component={MedicalTeam} />
       </div>
     </Router>
     <ToastContainer 

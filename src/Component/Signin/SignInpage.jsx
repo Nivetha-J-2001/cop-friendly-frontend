@@ -21,12 +21,12 @@ export default function SignInpage() {
             localStorage.setItem('userid',res.data.id);
             toast.success("SignIn Successfully...");
             if(localStorage.getItem('role') === '[TRAFFIC COP]'){
-                history.push("/trafficcop");
+                history.push("/trafficcop/home");
             }
             else if(localStorage.getItem('role') === '[MEDICAL TEAM]'){
-                history.push("/medicalteam");
+                history.push("/medicalteam/home");
             }else if(localStorage.getItem('role') === '[TRAFFIC CENTRAL]'){
-                history.push("/trafficcentral");
+                history.push("/trafficcentral/home");
             }
           }, (error) => {
             console.log(error);

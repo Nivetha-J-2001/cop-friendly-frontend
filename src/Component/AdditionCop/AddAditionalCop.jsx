@@ -30,7 +30,7 @@ export default function AddAdditioncalCop() {
         Service.AddAdditionalcop(cop).then((response) => {
             // console.log(response);
             toast.success("Added Successfully");
-            history.push('/trafficcop');
+            history.push('/trafficcop/home');
           }, (Error) => {
             let message;    
                 if (Error['response'].status === 409) {

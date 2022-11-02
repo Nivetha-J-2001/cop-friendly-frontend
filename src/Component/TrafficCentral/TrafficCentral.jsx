@@ -18,19 +18,19 @@ export default function TrafficCentral()
     },[])
     const handlesubmituser = (e)=>{
         e.preventDefault();
-        history.push("/addusers");
+        history.push("/trafficcentral/users");
     }
     const handlesubmitviolation = (e)=>{
         e.preventDefault();
-        history.push("/viewviolation");
+        history.push("/trafficcentral/violationdetails");
     }
     const handlesubmitmedical = (e)=>{
         e.preventDefault();
-        history.push("/viewmedicalteam");
+        history.push("/trafficcentral/medicalteams");
     }
     const handlesubmitaddition =(e)=>{
         e.preventDefault();
-        history.push("/additionalcop");
+        history.push("/trafficcentral/additioncop/home");
     }
     return (
         <>

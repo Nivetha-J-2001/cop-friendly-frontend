@@ -16,15 +16,15 @@ export default function Addusers()
     },[])
     const handlesubmitcop = (e)=>{
         e.preventDefault();
-        history.push("/addcop");
+        history.push("/trafficcentral/users/trafficcop");
     }
     const handlesubmitcentral = (e)=>{
         e.preventDefault();
-        history.push("/addcentral");
+        history.push("/trafficcentral/users/trafficcentral");
     }
     const handlesubmitmedical = (e)=>{
         e.preventDefault();
-        history.push("/addmedical");
+        history.push("/trafficcentral/users/medicalteam");
     }
     return (
         <>

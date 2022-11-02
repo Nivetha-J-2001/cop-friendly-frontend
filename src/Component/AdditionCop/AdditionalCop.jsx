@@ -18,11 +18,11 @@ export default function AdditionalCop()
     const history= useHistory();
     const handlesubmitrequestaddition = (e)=>{
         e.preventDefault();
-        history.push("/updateadditionalcop");
+        history.push("/trafficcentral/additionalcop");
     }
     const handlesubmitaddition =(e)=>{
         e.preventDefault();
-        history.push("/viewadditioncop");
+        history.push("/trafficcentral/additionalcops");
     }
     return (
         <>
